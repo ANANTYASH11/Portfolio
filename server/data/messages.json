@@ -1,0 +1,20 @@
+[
+  {
+    "id": "mry1gnn6g3qtd",
+    "name": "Acme Corp Recruiter",
+    "email": "recruiter@acme.com",
+    "company": "Acme Corp",
+    "message": "Hello Anant, we loved your portfolio! We would like to schedule an interview.",
+    "timestamp": "2026-07-23T21:43:59.922Z",
+    "read": false
+  },
+  {
+    "id": "mry1hs5o5ef2i",
+    "name": "Acme Corp Recruiter",
+    "email": "recruiter@acme.com",
+    "company": "Acme Corp",
+    "message": "Hello Anant, we loved your portfolio! We would like to schedule an interview.",
+    "timestamp": "2026-07-23T21:44:52.428Z",
+    "read": false
+  }
+]
