@@ -1,29 +1,39 @@
 import { useEffect, useRef } from "react";
 import "./styles/Cursor.css";
-import gsap from "gsap";
 
 const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     let hover = false;
-    const cursor = cursorRef.current!;
+    let animId: number;
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
     const mousePos = { x: 0, y: 0 };
     const cursorPos = { x: 0, y: 0 };
-    document.addEventListener("mousemove", (e) => {
+
+    const handleMouseMove = (e: MouseEvent) => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
-    });
-    requestAnimationFrame(function loop() {
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    const loop = () => {
       if (!hover) {
         const delay = 6;
         cursorPos.x += (mousePos.x - cursorPos.x) / delay;
         cursorPos.y += (mousePos.y - cursorPos.y) / delay;
-        gsap.to(cursor, { x: cursorPos.x, y: cursorPos.y, duration: 0.1 });
-        // cursor.style.transform = `translate(${cursorPos.x}px, ${cursorPos.y}px)`;
+        cursor.style.transform = `translate3d(${cursorPos.x}px, ${cursorPos.y}px, 0)`;
       }
-      requestAnimationFrame(loop);
-    });
-    document.querySelectorAll("[data-cursor]").forEach((item) => {
+      animId = requestAnimationFrame(loop);
+    };
+
+    animId = requestAnimationFrame(loop);
+
+    const elements = document.querySelectorAll("[data-cursor]");
+    elements.forEach((item) => {
       const element = item as HTMLElement;
       element.addEventListener("mouseover", (e: MouseEvent) => {
         const target = e.currentTarget as HTMLElement;
@@ -31,9 +41,7 @@ const Cursor = () => {
 
         if (element.dataset.cursor === "icons") {
           cursor.classList.add("cursor-icons");
-
-          gsap.to(cursor, { x: rect.left, y: rect.top, duration: 0.1 });
-          //   cursor.style.transform = `translate(${rect.left}px,${rect.top}px)`;
+          cursor.style.transform = `translate3d(${rect.left}px, ${rect.top}px, 0)`;
           cursor.style.setProperty("--cursorH", `${rect.height}px`);
           hover = true;
         }
@@ -46,6 +54,11 @@ const Cursor = () => {
         hover = false;
       });
     });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animId);
+    };
   }, []);
 
   return <div className="cursor-main" ref={cursorRef}></div>;
