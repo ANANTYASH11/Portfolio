@@ -188,8 +188,7 @@ const Contact = () => {
                   <a href="mailto:anantyashh21@gmail.com" data-cursor="disable">
                     anantyashh21@gmail.com
                   </a>
-                  <br />
-                  <a href="mailto:yashbuddy2021@gmail.com" data-cursor="disable" style={{ marginTop: "6px", display: "inline-block" }}>
+                  <a href="mailto:yashbuddy2021@gmail.com" data-cursor="disable">
                     yashbuddy2021@gmail.com
                   </a>
                 </p>
@@ -203,27 +202,29 @@ const Contact = () => {
 
               <div className="contact-box">
                 <h4>Social</h4>
-                <a
-                  href="https://github.com/ANANTYASH11"
-                  target="_blank"
-                  data-cursor="disable"
-                  className="contact-social"
-                >
-                  Github <MdArrowOutward />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/anantyash1111/"
-                  target="_blank"
-                  data-cursor="disable"
-                  className="contact-social"
-                >
-                  Linkedin <MdArrowOutward />
-                </a>
+                <div className="contact-socials-list">
+                  <a
+                    href="https://github.com/ANANTYASH11"
+                    target="_blank"
+                    data-cursor="disable"
+                    className="contact-social"
+                  >
+                    Github <MdArrowOutward />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/anantyash1111/"
+                    target="_blank"
+                    data-cursor="disable"
+                    className="contact-social"
+                  >
+                    Linkedin <MdArrowOutward />
+                  </a>
+                </div>
               </div>
 
               <div className="contact-box">
                 <h2>
-                  Designed and Developed <br /> by <span>Anant Yash</span>
+                  Designed and Developed by <span>Anant Yash</span>
                 </h2>
                 <h5 className="copyright-label">
                   <MdCopyright /> 2026

@@ -9,78 +9,149 @@
   text-transform: uppercase;
   margin: 0;
 }
-.contact-flex {
-  display: flex;
-  justify-content: space-between;
+
+/* Contact Grid Layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 80px;
+  margin-top: 50px;
+  align-items: stretch;
 }
-.contact-flex h4 {
-  font-weight: 500;
-  margin: 0;
-  opacity: 0.6;
-}
-.contact-box {
+
+/* Contact Info Column Container */
+.contact-info-container {
   display: flex;
   flex-direction: column;
 }
-.contact-flex p {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-a.contact-social {
-  font-size: 25px;
-  border-bottom: 1px solid #ccc;
-}
-.contact-box h2 {
-  font-weight: 400;
-  font-size: 23px;
-  margin: 0;
-}
-.contact-box h2 > span {
-  color: var(--accentColor);
-}
-.contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 20px;
+
+.contact-flex {
   display: flex;
-  gap: 10px;
-  opacity: 0.5;
+  flex-direction: column;
+  gap: 35px;
+  height: 100%;
+  justify-content: space-between;
+  padding-left: 20px;
 }
+
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Section Sub-headings */
+.contact-box h4 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accentColor);
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Email & Phone Links */
+.contact-box p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-box p a {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  width: max-content;
+}
+
+.contact-box p a:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* Social links custom styling */
+.contact-socials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+a.contact-social {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 4px;
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+a.contact-social svg {
+  font-size: 18px;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+a.contact-social:hover {
+  color: var(--accentColor);
+  border-color: var(--accentColor);
+  transform: translateX(4px);
+}
+
+a.contact-social:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Designed & Developed block */
+.contact-box h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-box h2 span {
+  color: var(--accentColor);
+  font-weight: 600;
+}
+
+.copyright-label {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 @media only screen and (max-width: 1600px) {
   .contact-section h3 {
     font-size: 50px;
-  }
-  .contact-box h2 {
-    font-size: 20px;
-  }
-  a.contact-social {
-    font-size: 22px;
   }
 }
 @media only screen and (max-width: 1300px) {
   .contact-section h3 {
     font-size: 40px;
   }
-  .contact-box h2 {
-    font-size: 18px;
-  }
-  a.contact-social {
-    font-size: 20px;
-  }
-  .contact-flex p {
-    margin-top: 0px;
-  }
 }
 @media only screen and (max-width: 900px) {
   .contact-flex {
     flex-direction: column;
-    gap: 40px;
-  }
-  .contact-flex p {
-    margin-bottom: 0px;
-  }
-  .contact-flex h4 {
-    margin-top: 20px;
+    gap: 30px;
+    padding-left: 0;
   }
   .contact-section {
     margin-top: 50px;
@@ -93,14 +164,6 @@ a.contact-social {
     grid-template-columns: 1fr !important;
     gap: 40px;
   }
-}
-
-/* Contact Grid Layout */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 60px;
-  margin-top: 40px;
 }
 
 /* Form Styling */
