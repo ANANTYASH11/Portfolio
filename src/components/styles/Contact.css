@@ -89,4 +89,415 @@ a.contact-social {
   .contact-container {
     width: calc(100% - 25px);
   }
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
 }
+
+/* Contact Grid Layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+/* Form Styling */
+.contact-form-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+}
+
+.form-title {
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  color: #fff;
+  opacity: 0.9 !important;
+}
+
+.query-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-group-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+.form-field input,
+.form-field textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--accentColor);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 12px rgba(138, 43, 226, 0.25);
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, var(--accentColor), #6a11cb);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 10px;
+  align-self: flex-start;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.form-alert {
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.form-alert.success {
+  background: rgba(46, 213, 115, 0.1);
+  border: 1px solid rgba(46, 213, 115, 0.2);
+  color: #2ed573;
+}
+
+.form-alert.error {
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.2);
+  color: #ff4757;
+}
+
+/* Contact Info Box alignment tweaks */
+.contact-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.copyright-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-lock-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.admin-lock-btn:hover {
+  color: var(--accentColor);
+}
+
+/* Admin Dashboard Modal Overlay */
+.admin-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.admin-modal {
+  background: rgba(18, 18, 18, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 650px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  animation: modalEnter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.admin-header h3 {
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.admin-header .close-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.admin-header .close-btn:hover {
+  color: #fff;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.admin-login-form p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 5px;
+}
+
+.admin-login-form input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.admin-login-form input:focus {
+  border-color: var(--accentColor);
+}
+
+.admin-login-form button {
+  background: var(--accentColor);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.admin-login-form button:hover {
+  background: #9d4edd;
+}
+
+.admin-err-msg {
+  color: #ff4757;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.admin-messages-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.admin-messages-list h4 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.no-msgs-msg {
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  padding: 40px 0;
+}
+
+.messages-scroll-area {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  padding-right: 8px;
+  max-height: 50vh;
+}
+
+.messages-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-scroll-area::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 3px;
+}
+
+.messages-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.messages-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: var(--accentColor);
+}
+
+.msg-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.msg-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.msg-card h5 {
+  font-size: 16px;
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.delete-msg-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 71, 87, 0.6);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.delete-msg-btn:hover {
+  color: #ff4757;
+}
+
+.msg-company,
+.msg-email {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.msg-company strong,
+.msg-email strong {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.msg-email a {
+  color: var(--accentColor);
+  text-decoration: none;
+}
+
+.msg-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin: 4px 0 0 0;
+  white-space: pre-wrap;
+}
+
+.msg-date {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  align-self: flex-end;
+}
+
