@@ -1,33 +1,90 @@
 .about-section {
   display: flex;
   align-items: center;
-  justify-content: left;
-  place-items: center;
+  justify-content: flex-start;
   position: relative;
+  z-index: 12;
   opacity: 1;
   height: auto;
+  min-height: var(--vh);
   width: var(--cWidth);
   margin: auto;
+  padding: 60px 0;
 }
 .about-me {
-  padding: 50px 0px;
-  padding-bottom: 0;
-  width: 500px;
-  max-width: calc(100% - 15px);
+  padding: 20px 0px;
+  width: 100%;
+  max-width: 550px;
 }
 .about-me h3 {
-  font-size: 25px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
   text-transform: uppercase;
-  letter-spacing: 7px;
-  font-weight: 400;
+  letter-spacing: 6px;
+  font-weight: 600;
   color: var(--accentColor);
+  margin-bottom: 20px;
 }
 
 .about-me p {
-  font-size: 33px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65rem;
+  letter-spacing: 0.2px;
+  color: #d1cbd8;
+  margin-bottom: 1.1rem;
+}
+
+.about-me p:last-child {
+  margin-bottom: 0;
+}
+
+.about-me p strong {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.cinema-journey {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.cinema-scene {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.scene-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scene-num {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--accentColor);
+  background: rgba(170, 66, 255, 0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(170, 66, 255, 0.3);
+  text-transform: uppercase;
+}
+
+.scene-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
   font-weight: 600;
-  line-height: 36px;
-  letter-spacing: 1px;
+  color: #ffffff;
+  text-transform: uppercase;
+  opacity: 0.9;
 }
 
 @media only screen and (min-width: 600px) {
@@ -37,35 +94,82 @@
 }
 @media only screen and (min-width: 768px) {
   .about-me {
-    width: 500px;
-    max-width: calc(100% - 70px);
-    transform: translateY(0%);
-  }
-  .about-section {
-    opacity: 1;
+    max-width: 600px;
   }
 }
 @media only screen and (min-width: 1025px) {
   .about-section {
     width: var(--cWidth);
-    justify-content: right;
+    justify-content: flex-end;
     max-width: 1920px;
     height: var(--vh);
+    min-height: var(--vh);
     padding: 0px;
+    padding-right: 4vw;
     opacity: 1;
   }
   .about-me {
+    opacity: 0;
     padding: 0px;
-    width: 50%;
+    width: 44%;
+    max-width: 620px;
+  }
+  .about-me h3 {
+    font-size: 1.3vw;
+    letter-spacing: 6px;
+    margin-bottom: 1.2vw;
   }
   .about-me p {
-    font-size: 1.9vw;
-    line-height: 2.3vw;
+    font-size: 0.88vw;
+    line-height: 1.4vw;
+    margin-bottom: 0px;
+  }
+  .cinema-journey {
+    gap: 0.8vw;
+  }
+  .cinema-scene {
+    gap: 0.3vw;
+  }
+  .scene-num {
+    font-size: 0.7vw;
+    padding: 0.15vw 0.5vw;
+    border-radius: 0.25vw;
+  }
+  .scene-title {
+    font-size: 0.75vw;
+    letter-spacing: 0.2vw;
   }
 }
-@media only screen and (min-width: 1950px) {
+@media only screen and (min-width: 1600px) {
+  .about-section {
+    padding-right: 6vw;
+  }
+  .about-me {
+    width: 42%;
+    max-width: 680px;
+  }
+  .about-me h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
   .about-me p {
-    font-size: 2.5rem;
-    line-height: 2.7rem;
+    font-size: 1.02rem;
+    line-height: 1.6rem;
+    margin-bottom: 0px;
+  }
+  .cinema-journey {
+    gap: 1rem;
+  }
+  .cinema-scene {
+    gap: 0.4rem;
+  }
+  .scene-num {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .scene-title {
+    font-size: 0.82rem;
+    letter-spacing: 3px;
   }
 }
