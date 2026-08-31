@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
@@ -9,8 +9,30 @@ const Loading = ({ percent }: { percent: number }) => {
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [displayPercent, setDisplayPercent] = useState(0);
+  const animFrameRef = useRef<number>(0);
+  const currentRef = useRef(0);
 
-  // Move side-effect out of render body and into useEffect
+  // Smooth animated counter using requestAnimationFrame
+  useEffect(() => {
+    const target = percent;
+    const animate = () => {
+      const diff = target - currentRef.current;
+      if (Math.abs(diff) < 0.5) {
+        currentRef.current = target;
+        setDisplayPercent(target);
+        return;
+      }
+      // Ease towards target — faster when far, slower when close
+      currentRef.current += diff * 0.12;
+      setDisplayPercent(Math.round(currentRef.current));
+      animFrameRef.current = requestAnimationFrame(animate);
+    };
+    animFrameRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animFrameRef.current);
+  }, [percent]);
+
+  // Handle load completion
   useEffect(() => {
     if (percent < 100) {
       const fallback = setTimeout(() => {
@@ -67,13 +89,27 @@ const Loading = ({ percent }: { percent: number }) => {
           </div>
         </div>
       </div>
-      <div className="loading-screen">
+      <div className={`loading-screen ${clicked ? "loading-exit" : ""}`}>
+        {/* Ambient glow orbs */}
+        <div className="loading-orb loading-orb-1"></div>
+        <div className="loading-orb loading-orb-2"></div>
+        <div className="loading-orb loading-orb-3"></div>
+
         <div className="loading-marquee">
-          <Marquee>
+          <Marquee speed={40}>
             <span> A Creative Developer</span> <span>A Creative Designer</span>
             <span> A Creative Developer</span> <span>A Creative Designer</span>
           </Marquee>
         </div>
+
+        {/* Progress bar track */}
+        <div className={`loading-progress-track ${clicked ? "progress-hide" : ""}`}>
+          <div
+            className="loading-progress-fill"
+            style={{ width: `${displayPercent}%` }}
+          ></div>
+        </div>
+
         <div
           className={`loading-wrap ${clicked && "loading-clicked"}`}
           onMouseMove={(e) => handleMouseMove(e)}
@@ -83,7 +119,7 @@ const Loading = ({ percent }: { percent: number }) => {
             <div className="loading-container">
               <div className="loading-content">
                 <div className="loading-content-in">
-                  Loading <span>{percent}%</span>
+                  Loading <span>{displayPercent}%</span>
                 </div>
               </div>
               <div className="loading-box"></div>

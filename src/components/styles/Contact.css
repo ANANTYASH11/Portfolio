@@ -10,7 +10,88 @@
   margin: 0;
 }
 
-/* Contact Grid Layout */
+/* ─── Profile Photo Card ─── */
+.contact-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.contact-profile-card:hover {
+  border-color: rgba(168, 124, 255, 0.2);
+  box-shadow: 0 8px 40px rgba(168, 124, 255, 0.08);
+}
+
+.contact-profile-img-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+}
+.contact-profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid rgba(168, 124, 255, 0.3);
+  position: relative;
+  z-index: 2;
+  transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.contact-profile-card:hover .contact-profile-img {
+  border-color: var(--accentColor);
+  transform: scale(1.04);
+}
+.contact-profile-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(168, 124, 255, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.contact-profile-card:hover .contact-profile-glow {
+  opacity: 1;
+}
+
+.contact-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+h4.contact-profile-name {
+  font-family: "Geist", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  opacity: 1;
+}
+.contact-profile-role {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(194, 164, 255, 0.8);
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -163,6 +244,19 @@ a.contact-social:hover svg {
   .contact-grid {
     grid-template-columns: 1fr !important;
     gap: 40px;
+  }
+  .contact-profile-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 20px;
+  }
+  .contact-profile-info {
+    align-items: center;
+  }
+  .contact-profile-img,
+  .contact-profile-img-wrap {
+    width: 90px;
+    height: 90px;
   }
 }
 

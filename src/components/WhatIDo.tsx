@@ -90,22 +90,22 @@ const WhatIDo = () => {
               <h3>FULL STACK & AI</h3>
               <h4>Engineering Scope</h4>
               <p>
-                Architecting high-performance web platforms, microservices, and AI models with robust REST/GraphQL APIs, computer vision, and real-time database management.
+                Building production-grade web applications powered by AI — from intelligent dashboards and real-time APIs to computer vision pipelines and LLM-integrated platforms.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Java</div>
-                <div className="what-tags">C / C++</div>
-                <div className="what-tags">Python</div>
                 <div className="what-tags">React.js</div>
+                <div className="what-tags">Next.js</div>
                 <div className="what-tags">Node.js</div>
                 <div className="what-tags">Express.js</div>
-                <div className="what-tags">Next.js</div>
+                <div className="what-tags">Python</div>
                 <div className="what-tags">MongoDB</div>
                 <div className="what-tags">MySQL</div>
-                <div className="what-tags">PyTorch</div>
                 <div className="what-tags">TensorFlow</div>
+                <div className="what-tags">PyTorch</div>
+                <div className="what-tags">OpenCV</div>
                 <div className="what-tags">Docker</div>
+                <div className="what-tags">REST / GraphQL</div>
               </div>
               <div className="what-arrow"></div>
             </div>
@@ -129,21 +129,21 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>SYSTEMS & DSA</h3>
-              <h4>Engineering Scope</h4>
+              <h3>FREELANCING</h3>
+              <h4>Services Offered</h4>
               <p>
-                Building low-level socket programming applications, dynamic load balancers, multithreaded network servers, and solving complex algorithmic challenges.
+                Delivering end-to-end web solutions for startups and businesses — from custom websites and SaaS platforms to AI-powered tools, performance optimization, and ongoing technical consultation.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Data Structures</div>
-                <div className="what-tags">Algorithms</div>
-                <div className="what-tags">POSIX Sockets</div>
-                <div className="what-tags">Multithreading</div>
-                <div className="what-tags">Load Balancing</div>
-                <div className="what-tags">Git / GitHub</div>
-                <div className="what-tags">Linux / Bash</div>
-                <div className="what-tags">System Design</div>
+                <div className="what-tags">Custom Websites</div>
+                <div className="what-tags">SaaS Development</div>
+                <div className="what-tags">AI Integration</div>
+                <div className="what-tags">UI / UX Design</div>
+                <div className="what-tags">API Development</div>
+                <div className="what-tags">Database Design</div>
+                <div className="what-tags">Performance Tuning</div>
+                <div className="what-tags">Deployment & DevOps</div>
               </div>
               <div className="what-arrow"></div>
             </div>

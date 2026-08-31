@@ -1,14 +1,93 @@
+/* ─── Loading Screen ─── */
 .loading-screen {
   position: fixed;
   width: 100vw;
   height: var(--vh);
-  /* background-image: linear-gradient(#cbb1ff, #d8c4ff); */
-  background-color: #eae5ec;
+  background-color: #0e0a10;
+  background-image:
+    radial-gradient(ellipse at 30% 50%, rgba(168, 124, 255, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, rgba(194, 164, 255, 0.04) 0%, transparent 50%);
   z-index: 999999999;
   display: flex;
   place-items: center;
   justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.loading-exit {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+/* ─── Ambient Glow Orbs ─── */
+.loading-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  pointer-events: none;
+  animation: orbFloat 8s ease-in-out infinite alternate;
+}
+.loading-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: #a87cff;
+  top: -10%;
+  left: -5%;
+  animation-delay: 0s;
+}
+.loading-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: #c2a4ff;
+  bottom: -8%;
+  right: -3%;
+  animation-delay: -3s;
+}
+.loading-orb-3 {
+  width: 200px;
+  height: 200px;
+  background: #d8c4ff;
+  top: 40%;
+  left: 55%;
+  animation-delay: -5s;
+  opacity: 0.08;
+}
+@keyframes orbFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -20px) scale(1.15); }
+}
+
+/* ─── Progress Bar Track ─── */
+.loading-progress-track {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(320px, 70vw);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 10;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.progress-hide {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+}
+.loading-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a87cff, #c2a4ff);
+  border-radius: 4px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 12px rgba(168, 124, 255, 0.4);
+}
+
+/* ─── Loading Button ─── */
 .loading-button {
   padding: 20px 50px;
   border-radius: 100px;
@@ -18,6 +97,11 @@
   font-weight: 500;
   position: relative;
   z-index: 9;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease;
+}
+.loading-button:hover {
+  transform: scale(1.02);
 }
 .loading-button::before {
   content: "";
@@ -27,12 +111,12 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  opacity: 1;
   position: absolute;
   z-index: 99;
   filter: blur(60px);
   opacity: 0;
   transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease;
 }
 .loading-button:hover::before {
   opacity: 1;
@@ -40,7 +124,11 @@
 .loading-clicked .loading-button::before {
   opacity: 0;
 }
+.loading-clicked .loading-button:hover {
+  transform: none;
+}
 
+/* ─── Loading Wrap ─── */
 .loading-wrap {
   --Lsize: 145px;
   padding: 6px;
@@ -50,9 +138,10 @@
   border-radius: 100px;
   background-color: #000;
   overflow: hidden;
-  transition: 0.8s ease-in-out;
+  transition: 1s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: 0.2s;
-  box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 15px 40px 0px rgba(168, 124, 255, 0.12),
+              0px 5px 15px 0px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,8 +158,10 @@
 .loading-clicked .loading-button {
   overflow: visible;
 }
+
+/* ─── Hover Glow ─── */
 .loading-hover {
-  background-color: #a87cff;
+  background: radial-gradient(circle, #a87cff 0%, transparent 70%);
   width: 250px;
   height: 120px;
   position: absolute;
@@ -79,10 +170,9 @@
   border-radius: 50%;
   transform: translate(-50%, -50%);
   filter: blur(30px);
-  opacity: 1;
-  transition: opacity 500ms;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .loading-wrap:hover .loading-hover {
   opacity: 1;
 }
@@ -90,22 +180,25 @@
 .loading-clicked .loading-hover {
   opacity: 0;
 }
+
+/* ─── Loading Content ─── */
 .loading-content {
   position: relative;
   background-color: #000;
   width: 100%;
   overflow: hidden;
-  transition: 0.6s;
+  transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
 }
 .loading-content-in {
   position: relative;
   width: var(--Lsize);
   overflow: hidden;
+  font-variant-numeric: tabular-nums;
 }
 .loading-content2 {
   position: relative;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   width: var(--Lsize);
   overflow: hidden;
@@ -114,14 +207,13 @@
   align-items: center;
   column-gap: 10px;
   text-align: center;
-  transition: 1s;
+  transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: var(--Lsize);
 }
 .loading-clicked .loading-content2 {
   opacity: 0;
   transition: 0.5s;
 }
-
 .loading-content span {
   font-weight: 300;
   position: absolute;
@@ -129,7 +221,10 @@
   right: 0;
   transform: translateY(-50%);
   opacity: 0.7;
+  font-variant-numeric: tabular-nums;
 }
+
+/* ─── Cursor Blink ─── */
 .loading-box {
   position: absolute;
   right: 0px;
@@ -138,15 +233,14 @@
   width: 15px;
   height: 25px;
   background-color: white;
-  animation: blink 1s linear infinite;
+  animation: blink 1s ease-in-out infinite;
 }
 .loading-icon {
   transform: scale(0);
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition-delay: 0.5s;
 }
-
 .loading-complete .loading-icon {
   transform: scale(1);
   opacity: 1;
@@ -160,7 +254,7 @@
   overflow: visible;
 }
 .loading-clicked .loading-content2 span {
-  transition: 1s;
+  transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(100px);
   opacity: 0;
 }
@@ -168,17 +262,17 @@
   position: absolute;
   width: 100%;
   max-width: var(--Lsize);
-  /* height: 45px; */
   top: 50%;
-  transition: 1s;
+  transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
   left: 50px;
   z-index: 9;
   transform: translateY(-50%);
 }
-
 .loading-complete .loading-container {
   max-width: 0px;
 }
+
+/* ─── Header ─── */
 .loading-header {
   width: var(--cWidth);
   max-width: var(--cMaxWidth);
@@ -197,20 +291,15 @@
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.2px;
+  color: #eae5ec;
 }
+
+/* ─── Keyframes ─── */
 @keyframes blink {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 .loading-complete .loading-box {
   animation: blinkDone 0.3s forwards;
@@ -218,14 +307,13 @@
   opacity: 1;
 }
 @keyframes blinkDone {
-  to {
-    opacity: 0;
-  }
+  to { opacity: 0; }
 }
 
+/* ─── Loader Game (Pong) ─── */
 .loaderGame-container {
   width: 200px;
-  transition: 0.3s;
+  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100px;
   overflow: hidden;
   position: relative;
@@ -234,6 +322,7 @@
 }
 .loader-out .loaderGame-container {
   opacity: 0;
+  transform: scale(0.4) translateY(-10px);
 }
 .loaderGame-in {
   width: 1200px;
@@ -243,12 +332,8 @@
   animation: loaderGame 7s linear infinite;
 }
 @keyframes loaderGame {
-  0% {
-    transform: translateX(0px);
-  }
-  100% {
-    transform: translateX(-300px);
-  }
+  0%   { transform: translateX(0px); }
+  100% { transform: translateX(-300px); }
 }
 .loaderGame-line {
   float: left;
@@ -257,14 +342,14 @@
   position: relative;
   width: 10px;
   height: 60px;
-  background-color: #000;
+  background-color: #eae5ec;
   display: block;
+  border-radius: 2px;
 }
 .loaderGame-line:nth-child(2n) {
   margin-top: 40px;
   margin-bottom: 0px;
 }
-
 .loaderGame-ball {
   position: absolute;
   left: 20%;
@@ -272,21 +357,25 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: #a87cff;
+  background: linear-gradient(135deg, #a87cff, #c2a4ff);
+  box-shadow: 0 0 12px rgba(168, 124, 255, 0.5);
   animation: ball25 7s infinite;
   transform: translateY(10px);
   animation-timing-function: cubic-bezier(0.3, 1.18, 0.63, 1.28);
 }
+
+/* ─── Marquee ─── */
 .loading-marquee {
   position: absolute;
   top: 50%;
   left: 0;
   width: 100%;
   transform: translateY(-50%);
-  color: var(--backgroundColor);
+  color: rgba(234, 229, 236, 0.04);
   font-size: 60px;
   font-weight: 600;
   text-transform: uppercase;
+  pointer-events: none;
 }
 .loading-marquee span {
   padding: 0px 50px;
@@ -296,40 +385,27 @@
   content: "";
   width: 20px;
   height: 20px;
-  background-color: var(--backgroundColor);
+  background-color: rgba(234, 229, 236, 0.04);
   position: absolute;
   top: 50%;
   border-radius: 50px;
   left: 0px;
   transform: translate(-50%, -50%);
 }
+
+/* ─── Ball Bounce ─── */
 @keyframes ball25 {
-  0% {
-    transform: translateY(70px);
-  }
-  15% {
-    transform: translateY(10px);
-  }
-  30% {
-    transform: translateY(70px);
-  }
-  45% {
-    transform: translateY(10px);
-  }
-  67% {
-    transform: translateY(70px);
-  }
-  80% {
-    transform: translateY(10px);
-  }
-  90% {
-    transform: translateY(70px);
-  }
-  100% {
-    transform: translateY(70px);
-  }
+  0%   { transform: translateY(70px); }
+  15%  { transform: translateY(10px); }
+  30%  { transform: translateY(70px); }
+  45%  { transform: translateY(10px); }
+  67%  { transform: translateY(70px); }
+  80%  { transform: translateY(10px); }
+  90%  { transform: translateY(70px); }
+  100% { transform: translateY(70px); }
 }
 
+/* ─── Large Screens ─── */
 @media only screen and (min-width: 1400px) {
   .loading-wrap {
     --Lsize: 210px;
@@ -343,6 +419,10 @@
   }
   .loading-marquee {
     font-size: 100px;
+  }
+  .loading-progress-track {
+    width: 400px;
+    bottom: 80px;
   }
 }
 @media only screen and (min-width: 500px) {

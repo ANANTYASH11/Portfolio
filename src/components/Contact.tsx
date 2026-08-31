@@ -181,6 +181,22 @@ const Contact = () => {
 
           {/* Contact Information & Credits */}
           <div className="contact-info-container">
+            {/* Profile Photo */}
+            <div className="contact-profile-card">
+              <div className="contact-profile-img-wrap">
+                <img
+                  src="/images/anant.jpg"
+                  alt="Anant Yash"
+                  className="contact-profile-img"
+                />
+                <div className="contact-profile-glow"></div>
+              </div>
+              <div className="contact-profile-info">
+                <h4 className="contact-profile-name">Anant Yash</h4>
+                <p className="contact-profile-role">Full Stack Developer · AI Engineer · Freelancer</p>
+              </div>
+            </div>
+
             <div className="contact-flex">
               <div className="contact-box">
                 <h4>Email</h4>
