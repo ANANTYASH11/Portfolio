@@ -3,17 +3,28 @@ import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
 
 const setLighting = (scene: THREE.Scene) => {
-  const directionalLight = new THREE.DirectionalLight(0xc7a9ff, 0);
-  directionalLight.intensity = 0;
-  directionalLight.position.set(-0.47, -0.32, -1);
-  directionalLight.castShadow = true;
-  directionalLight.shadow.mapSize.width = 1024;
-  directionalLight.shadow.mapSize.height = 1024;
-  directionalLight.shadow.camera.near = 0.5;
-  directionalLight.shadow.camera.far = 50;
-  scene.add(directionalLight);
+  // Key Light (Violet/Lavender)
+  const keyLight = new THREE.DirectionalLight(0xd8b4fe, 0);
+  keyLight.position.set(2.5, 5, 4);
+  keyLight.castShadow = true;
+  keyLight.shadow.mapSize.width = 2048;
+  keyLight.shadow.mapSize.height = 2048;
+  keyLight.shadow.camera.near = 0.5;
+  keyLight.shadow.camera.far = 50;
+  keyLight.shadow.bias = -0.0005;
+  scene.add(keyLight);
 
-  const pointLight = new THREE.PointLight(0xc2a4ff, 0, 100, 3);
+  // Rim / Kicker Light (Electric Cyan) from behind for cyber edge highlights
+  const rimLight = new THREE.DirectionalLight(0x06b6d4, 0);
+  rimLight.position.set(-3.5, 4.5, -3);
+  scene.add(rimLight);
+
+  // Soft Ambient Fill Light (Deep Indigo) for rich contrast
+  const fillLight = new THREE.AmbientLight(0x1e1838, 0);
+  scene.add(fillLight);
+
+  // Dynamic Point Light tied to laptop screen
+  const pointLight = new THREE.PointLight(0xc2a4ff, 0, 100, 2.5);
   pointLight.position.set(3, 12, 4);
   pointLight.castShadow = true;
   scene.add(pointLight);
@@ -28,22 +39,34 @@ const setLighting = (scene: THREE.Scene) => {
     });
 
   function setPointLight(screenLight: any) {
-    if (screenLight.material.opacity > 0.9) {
-      pointLight.intensity = screenLight.material.emissiveIntensity * 20;
+    if (screenLight && screenLight.material && screenLight.material.opacity > 0.9) {
+      pointLight.intensity = screenLight.material.emissiveIntensity * 22;
     } else {
       pointLight.intensity = 0;
     }
   }
-  const duration = 2;
+
+  const duration = 2.2;
   const ease = "power2.inOut";
+
   function turnOnLights() {
     gsap.to(scene, {
-      environmentIntensity: 0.64,
+      environmentIntensity: 0.75,
       duration: duration,
       ease: ease,
     });
-    gsap.to(directionalLight, {
-      intensity: 1,
+    gsap.to(keyLight, {
+      intensity: 1.6,
+      duration: duration,
+      ease: ease,
+    });
+    gsap.to(rimLight, {
+      intensity: 1.8,
+      duration: duration,
+      ease: ease,
+    });
+    gsap.to(fillLight, {
+      intensity: 0.9,
       duration: duration,
       ease: ease,
     });
@@ -59,3 +82,4 @@ const setLighting = (scene: THREE.Scene) => {
 };
 
 export default setLighting;
+

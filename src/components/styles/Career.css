@@ -97,30 +97,38 @@
 .career-info-box {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   position: relative;
-  padding: 20px 0;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
+  padding: 28px 32px;
+  border-radius: 16px;
+  background: rgba(18, 14, 28, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(194, 164, 255, 0.1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .career-info-box:hover {
-  transform: translateX(5px);
+  transform: translateY(-3px) translateX(4px);
+  background: rgba(24, 18, 38, 0.7);
+  border-color: rgba(194, 164, 255, 0.3);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(194, 164, 255, 0.1);
 }
 
 .career-info-box p {
   width: 40%;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.65;
+  color: #cfc8d8;
 }
 
 .career-info-in {
   display: flex;
-  width: 40%;
+  width: 42%;
   justify-content: space-between;
-  gap: 50px;
+  gap: 30px;
   align-items: flex-start;
 }
 
@@ -130,11 +138,12 @@
 }
 
 .career-year-badge h3 {
-  font-size: 48px;
+  font-size: 46px;
   margin: 0;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 45px;
-  background: linear-gradient(135deg, #c481ff, #aa42ff);
+  font-family: "Space Grotesk", sans-serif;
+  background: linear-gradient(135deg, #e2d4ff 0%, #aa42ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -146,7 +155,7 @@
   position: absolute;
   inset: -8px;
   border-radius: 12px;
-  background: radial-gradient(ellipse, rgba(170, 66, 255, 0.15), transparent 70%);
+  background: radial-gradient(ellipse, rgba(170, 66, 255, 0.2), transparent 70%);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -157,20 +166,21 @@
 }
 
 .career-info h4 {
-  font-size: 30px;
-  line-height: 1.2;
-  letter-spacing: 0.8px;
-  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+  font-weight: 600;
   margin: 0;
   color: #ffffff;
 }
 .career-info h5 {
-  font-weight: 400;
-  letter-spacing: 0.7px;
-  font-size: 18px;
-  text-transform: capitalize;
-  margin: 8px 0px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin: 6px 0px 0px 0px;
   color: var(--accentColor);
+  font-family: "Space Grotesk", monospace;
 }
 
 /* ===== Timeline Line ===== */
@@ -179,14 +189,16 @@
   top: -30px;
   left: 50%;
   transform: translateX(-50%);
-  width: 3px;
+  width: 2px;
   height: 100%;
   background-image: linear-gradient(
     to top,
-    #aa42ff 20%,
-    var(--accentColor) 50%,
-    transparent 95%
+    #00f0ff 0%,
+    #aa42ff 45%,
+    var(--accentColor) 80%,
+    transparent 100%
   );
+  box-shadow: 0 0 12px rgba(170, 66, 255, 0.5);
   max-height: 0%;
 }
 
@@ -195,12 +207,11 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
-  background-color: #aa42ff;
+  background-color: #00f0ff;
   width: 10px;
   height: 10px;
   border-radius: 50px;
-  box-shadow: 0px 0px 5px 2px #d29bff, 0px 0px 15px 8px #d097ff,
-    0px 0px 110px 20px #f2c0ff;
+  box-shadow: 0px 0px 6px 3px rgba(0, 240, 255, 0.8), 0px 0px 20px 8px rgba(170, 66, 255, 0.6);
   animation: timeline 0.8s linear infinite forwards;
 }
 
@@ -210,7 +221,7 @@
   50%,
   70%,
   90% {
-    box-shadow: 0px 0px 5px 2px #d29bff;
+    box-shadow: 0px 0px 5px 2px #00f0ff;
   }
   10%,
   30%,
@@ -218,8 +229,8 @@
   100%,
   64%,
   80% {
-    box-shadow: 0px 0px 5px 2px #d29bff, 0px 0px 15px 5px #d097ff,
-      0px 0px 110px 20px #f2c0ff;
+    box-shadow: 0px 0px 6px 3px #00f0ff, 0px 0px 18px 6px #aa42ff,
+      0px 0px 80px 16px rgba(194, 164, 255, 0.6);
   }
 }
 
@@ -228,19 +239,26 @@
   width: 40%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .career-cert-item {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(170, 66, 255, 0.12);
+  background: rgba(18, 14, 28, 0.65);
+  border: 1px solid rgba(170, 66, 255, 0.18);
   padding: 12px 18px;
-  border-radius: 8px;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: all 0.25s ease;
 }
+
+.career-cert-item:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  background: rgba(24, 18, 38, 0.85);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 12px rgba(0, 240, 255, 0.15);
+}
+
 
 .career-cert-item:hover {
   background: rgba(170, 66, 255, 0.05);

@@ -5,12 +5,27 @@ import { eyebrowBoneNames, typingBoneNames } from "../../../data/boneData";
 const setAnimations = (gltf: GLTF) => {
   let character = gltf.scene;
   let mixer = new THREE.AnimationMixer(character);
+  let introAction: THREE.AnimationAction | null = null;
+
   if (gltf.animations) {
     const introClip = gltf.animations.find(
       (clip) => clip.name === "introAnimation"
     );
     if (introClip) {
-      const introAction = mixer.clipAction(introClip);
+      // Exclude neck and head tracks so introAnimation does NOT force a downward slouch or hunch
+      const filteredTracks = introClip.tracks.filter(
+        (track) =>
+          !track.name.includes("spine.005") &&
+          !track.name.includes("spine.006") &&
+          !track.name.includes("spine005") &&
+          !track.name.includes("spine006")
+      );
+      const filteredIntro = new THREE.AnimationClip(
+        "introAnimation_straight",
+        introClip.duration,
+        filteredTracks
+      );
+      introAction = mixer.clipAction(filteredIntro);
       introAction.setLoop(THREE.LoopOnce, 1);
       introAction.clampWhenFinished = true;
     }
@@ -32,11 +47,7 @@ const setAnimations = (gltf: GLTF) => {
     }
   }
   function startIntro() {
-    const introClip = gltf.animations.find(
-      (clip) => clip.name === "introAnimation"
-    );
-    if (introClip) {
-      const introAction = mixer.clipAction(introClip);
+    if (introAction) {
       introAction.clampWhenFinished = true;
       introAction.reset().play();
     }

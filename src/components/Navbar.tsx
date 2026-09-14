@@ -49,8 +49,13 @@ const Navbar = () => {
             </a>
           </li>
           <li>
+            <a data-href="#academics" href="#academics">
+              <HoverLinks text="ACADEMICS" />
+            </a>
+          </li>
+          <li>
             <a data-href="#contact" href="#contact">
-              <HoverLinks text="CONTACT" />
+              <HoverLinks text="HIRE ME" />
             </a>
           </li>
         </ul>

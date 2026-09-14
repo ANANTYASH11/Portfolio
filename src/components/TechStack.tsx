@@ -145,26 +145,42 @@ const TechStack = () => {
           map: texture,
           emissive: "#ffffff",
           emissiveMap: texture,
-          emissiveIntensity: 0.2,
-          metalness: 0.3,
-          roughness: 0.8,
+          emissiveIntensity: 0.15,
+          metalness: 0.15,
+          roughness: 0.18,
+          clearcoat: 1.0,
+          clearcoatRoughness: 0.08,
+          reflectivity: 0.95,
         })
     );
   }, []);
 
   return (
     <div className="techstack" ref={containerRef}>
-      <h2> My Techstack</h2>
+      <div className="techstack-header">
+        <h2>My Techstack</h2>
+        <p className="techstack-subtitle">
+          Interactive Physics Engine · Interact with tech nodes
+        </p>
+      </div>
 
       <Canvas
         shadows={false}
-        gl={{ alpha: true, stencil: false, depth: true, antialias: false }}
+        gl={{
+          alpha: true,
+          stencil: false,
+          depth: true,
+          antialias: true,
+          powerPreference: "high-performance",
+        }}
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
         className="tech-canvas"
         frameloop={isVisible ? "always" : "never"}
       >
         <ambientLight intensity={1.2} />
-        <directionalLight position={[10, 10, 10]} intensity={1.5} />
+        <directionalLight position={[10, 15, 10]} intensity={2.0} color="#ffffff" />
+        <directionalLight position={[-10, -10, -5]} intensity={1.4} color="#06b6d4" />
+        <pointLight position={[0, 0, 10]} intensity={1.8} color="#c2a4ff" />
         <Physics gravity={[0, 0, 0]} paused={!isVisible}>
           <Pointer isActive={isVisible} />
           {spheres.map((props, i) => (
@@ -178,12 +194,13 @@ const TechStack = () => {
         </Physics>
         <Environment
           files="/models/char_enviorment.hdr"
-          environmentIntensity={0.5}
+          environmentIntensity={0.65}
         />
       </Canvas>
     </div>
   );
 };
+
 
 export default TechStack;
 

@@ -1,0 +1,811 @@
+/* ─── Academic Foundation & Full-Stack Standards ─── */
+/* Unified styling adhering 100% to Portfolio Design System & Typography Scale */
+
+.academics-section {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  z-index: 10;
+}
+
+.academics-container {
+  width: var(--cWidth);
+  max-width: var(--cMaxWidth);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ─── Section Header (Exact match to Selected Work & Career) ─── */
+.academics-header {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.academics-header h2 {
+  font-size: 65px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.1;
+  background: linear-gradient(0deg, #7f40ff, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Geist", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.academics-header h2 > span {
+  font-family: "Geist", sans-serif;
+  font-weight: 300;
+  -webkit-text-fill-color: var(--accentColor);
+}
+
+.academics-subtitle {
+  color: #adacac;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  max-width: 850px;
+}
+
+/* ─── Main Academic Grid ─── */
+.academics-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 36px;
+  align-items: stretch;
+}
+
+/* ─── Left Column: Certificate Showcase Card (matches .work-box) ─── */
+.degree-showcase-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: rgba(18, 14, 28, 0.65);
+  border: 1px solid rgba(194, 164, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  gap: 20px;
+  justify-content: space-between;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.degree-showcase-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #aa42ff, var(--cyanAccent), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.degree-showcase-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(194, 164, 255, 0.4);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6), 0 0 32px rgba(194, 164, 255, 0.18);
+}
+
+.degree-showcase-card:hover::before {
+  opacity: 1;
+}
+
+.degree-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Verified Pill Tag */
+.verified-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 240, 255, 0.08) !important;
+  border-color: rgba(0, 240, 255, 0.3) !important;
+  color: #00f0ff !important;
+  font-family: "Space Grotesk", monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 0.5px;
+}
+
+.verified-check-icon {
+  font-size: 14px;
+  color: var(--cyanAccent);
+  animation: pulseCyan 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseCyan {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.9));
+  }
+}
+
+/* Document Switcher Tabs (matches .work-tag & .what-tags) */
+.document-tabs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.document-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(194, 164, 255, 0.08);
+  border: 1px solid rgba(194, 164, 255, 0.2);
+  color: #e2d4ff;
+  font-size: 11.5px;
+  font-family: "Space Grotesk", monospace;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.document-tab:hover {
+  background: rgba(194, 164, 255, 0.16);
+  border-color: rgba(0, 240, 255, 0.4);
+  color: #ffffff;
+}
+
+.document-tab.active {
+  background: rgba(170, 66, 255, 0.28);
+  border-color: rgba(196, 129, 255, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(170, 66, 255, 0.4);
+}
+
+/* Certificate Image Container (matches .work-image-in) */
+.degree-image-in {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(194, 164, 255, 0.15);
+  background: rgba(10, 8, 16, 0.85);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.degree-showcase-card:hover .degree-image-in {
+  border-color: rgba(194, 164, 255, 0.35);
+}
+
+.degree-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+  background: #ffffff;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.degree-image-in:hover .degree-img {
+  transform: scale(1.02);
+}
+
+.degree-inspect-link {
+  bottom: 16px;
+  right: 16px;
+}
+
+.degree-image-in:hover .degree-inspect-link {
+  background-color: #aa42ff;
+  color: #fff;
+  transform: scale(1.1) rotate(45deg);
+  box-shadow: 0 0 20px rgba(170, 66, 255, 0.6);
+}
+
+/* Credential Meta Strip (matches .scene-header & .scene-num) */
+.credential-meta-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: rgba(14, 10, 22, 0.7);
+  border: 1px solid rgba(194, 164, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.credential-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.credential-meta-item .meta-text {
+  font-family: "Space Grotesk", monospace;
+  font-size: 11px;
+  color: #cfc8d8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Degree Card Footer */
+.degree-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.degree-inst-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.degree-seal-icon {
+  font-size: 24px;
+  color: #eab308;
+  flex-shrink: 0;
+}
+
+.degree-inst-text h5 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Geist", sans-serif;
+}
+
+.degree-inst-text p {
+  margin: 2px 0 0 0;
+  color: #adacac;
+  font-size: 12px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 300;
+}
+
+.degree-inst-text p strong {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.degree-buttons-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Academic Buttons (matches .submit-btn & .work-arrow-btn) */
+.academic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: "Space Grotesk", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.academic-btn.primary {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 50%, #4f46e5 100%);
+  border: none;
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(168, 85, 247, 0.35);
+}
+
+.academic-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.55), 0 0 16px rgba(0, 240, 255, 0.3);
+  color: #fff;
+}
+
+.academic-btn.secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+.academic-btn.secondary:hover {
+  background: rgba(170, 66, 255, 0.25);
+  border-color: rgba(196, 129, 255, 0.6);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(170, 66, 255, 0.4);
+}
+
+/* ─── Right Column: Curriculum Transcript & Capstone ─── */
+.academics-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Courses Summary Card (matches .work-box) */
+.courses-summary-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(18, 14, 28, 0.65);
+  border: 1px solid rgba(194, 164, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  gap: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.courses-summary-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #aa42ff, var(--cyanAccent), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.courses-summary-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(194, 164, 255, 0.4);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 28px rgba(194, 164, 255, 0.16);
+}
+
+.courses-summary-card:hover::before {
+  opacity: 1;
+}
+
+.courses-list-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Course Item (Exact match to .cinema-scene in About.css) */
+.course-scene {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(18, 14, 28, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(194, 164, 255, 0.12);
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.course-scene:hover {
+  background: rgba(26, 18, 42, 0.8);
+  border-color: rgba(194, 164, 255, 0.3);
+  transform: translateX(4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(194, 164, 255, 0.08);
+}
+
+.course-scene .scene-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.course-status-pill {
+  margin-left: auto;
+  font-family: "Space Grotesk", monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #10b981;
+}
+
+.course-status-pill.verified {
+  color: var(--cyanAccent);
+}
+
+.capstone-num {
+  background: rgba(0, 240, 255, 0.15) !important;
+  border-color: rgba(0, 240, 255, 0.4) !important;
+  color: var(--cyanAccent) !important;
+}
+
+.course-scene-desc {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 11.5px;
+  color: #adacac;
+  margin: 0;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+/* ─── Featured Capstone Project Card (matches .work-box) ─── */
+.capstone-featured-box {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: rgba(18, 14, 28, 0.65);
+  border: 1px solid rgba(194, 164, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  gap: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.capstone-featured-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #00f0ff, #aa42ff, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.capstone-featured-box:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6), 0 0 32px rgba(0, 240, 255, 0.18);
+}
+
+.capstone-featured-box:hover::before {
+  opacity: 1;
+}
+
+.capstone-featured-box .work-title {
+  margin-bottom: 0;
+}
+
+.capstone-featured-box .work-title h4 {
+  font-size: 20px;
+  font-family: "Geist", sans-serif;
+  font-weight: 600;
+}
+
+.capstone-description {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #cfc8d8;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ─── Full-Stack Developer Engineering Matrix ─── */
+.engineering-matrix-wrap {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-eyebrow {
+  font-family: "Space Grotesk", monospace;
+  font-size: 11.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  font-weight: 600;
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
+.matrix-title {
+  font-size: 38px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+  background: linear-gradient(0deg, #7f40ff, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Geist", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.matrix-title > span {
+  font-family: "Geist", sans-serif;
+  font-weight: 300;
+  -webkit-text-fill-color: var(--accentColor);
+}
+
+.matrix-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.matrix-box {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(18, 14, 28, 0.65);
+  border: 1px solid rgba(194, 164, 255, 0.12);
+  border-radius: 18px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #aa42ff, var(--cyanAccent), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.matrix-box:hover {
+  transform: translateY(-6px);
+  border-color: rgba(194, 164, 255, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(194, 164, 255, 0.15);
+}
+
+.matrix-box:hover::before {
+  opacity: 1;
+}
+
+.matrix-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(170, 66, 255, 0.15);
+  border: 1px solid rgba(194, 164, 255, 0.25);
+  color: var(--accentColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.matrix-box:hover .matrix-icon-box {
+  transform: scale(1.08);
+  border-color: var(--accentColor);
+}
+
+.matrix-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.matrix-content h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: "Geist", sans-serif;
+}
+
+.matrix-content p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #adacac;
+  font-weight: 300;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* ─── Lightbox Modal (matches Admin Modal & Cyberpunk Overlays) ─── */
+.degree-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  padding: 24px;
+  box-sizing: border-box;
+  animation: modalEnter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.degree-lightbox-content {
+  background: rgba(18, 14, 28, 0.95);
+  border: 1px solid rgba(194, 164, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(194, 164, 255, 0.12);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 980px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 28px;
+  box-sizing: border-box;
+}
+
+.degree-lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 14px;
+}
+
+.lightbox-title-box h4 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: "Geist", sans-serif;
+}
+
+.lightbox-doc-ref {
+  font-size: 11px;
+  color: var(--accentColor);
+  font-family: "Space Grotesk", monospace;
+  letter-spacing: 1px;
+}
+
+.lightbox-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lightbox-close-btn {
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+}
+
+.degree-lightbox-img-box {
+  background: #0d0a14;
+  border: 1px solid rgba(194, 164, 255, 0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  max-height: 68vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.degree-lightbox-img {
+  width: 100%;
+  height: auto;
+  max-height: 66vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.degree-lightbox-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #cfc8d8;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+}
+
+.degree-lightbox-footer strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.lightbox-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ─── Responsive Media Queries ─── */
+@media only screen and (max-width: 1200px) {
+  .academics-grid {
+    grid-template-columns: 1fr;
+  }
+  .matrix-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .academics-header h2 {
+    font-size: 52px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .academics-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .academics-header h2 {
+    font-size: 40px;
+  }
+  .matrix-title {
+    font-size: 30px;
+  }
+  .degree-showcase-card {
+    padding: 20px;
+  }
+  .courses-summary-card {
+    padding: 20px;
+  }
+  .matrix-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .credential-meta-strip {
+    grid-template-columns: 1fr;
+  }
+  .degree-buttons-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .academic-btn {
+    width: 100%;
+  }
+  .lightbox-controls {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .academics-header h2 {
+    font-size: 34px;
+  }
+  .matrix-title {
+    font-size: 26px;
+  }
+}

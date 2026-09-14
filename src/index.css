@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 :root {
-  font-family: "Geist", sans-serif;
+  font-family: "Geist", "Plus Jakarta Sans", sans-serif;
 
   font-optical-sizing: auto;
   font-style: normal;
   line-height: 1.5;
   scroll-behavior: smooth;
-  color-scheme: light dark;
+  color-scheme: dark;
   color: #eae5ec;
   background-color: var(--backgroundColor);
 
@@ -18,11 +18,45 @@
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
+
+  /* Obsidian Cybernetic Palette */
   --accentColor: #c2a4ff;
-  --backgroundColor: #0b080c;
+  --accentVioletLight: #e2d4ff;
+  --accentGlow: rgba(194, 164, 255, 0.4);
+  --cyanAccent: #00f0ff;
+  --cyanGlow: rgba(0, 240, 255, 0.35);
+  --backgroundColor: #08060c;
+  --bgSurface: rgba(18, 14, 28, 0.72);
+  --bgSurfaceElevated: rgba(28, 20, 44, 0.85);
+  --borderGlass: rgba(194, 164, 255, 0.12);
+  --borderGlassHover: rgba(194, 164, 255, 0.35);
+
   --vh: 100vh;
   --vh: 100svh;
 }
+
+/* Custom Cybernetic Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #08060c;
+}
+::-webkit-scrollbar-thumb {
+  background: #231a38;
+  border-radius: 4px;
+  border: 1px solid rgba(194, 164, 255, 0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3e2866;
+  box-shadow: 0 0 10px rgba(194, 164, 255, 0.5);
+}
+
+::selection {
+  background: rgba(194, 164, 255, 0.3);
+  color: #ffffff;
+}
+
 h1,
 h2,
 h3,
@@ -30,41 +64,51 @@ h4,
 h5,
 h6 {
   font-family: "Geist", sans-serif;
+  letter-spacing: -0.02em;
 }
+
 body {
   overflow: hidden;
 }
+
 a {
   color: inherit;
   text-decoration: inherit;
+  transition: color 0.25s ease;
 }
+
 a:hover {
   color: var(--accentColor);
 }
+
 main {
   opacity: 1;
   transition: 0.3s;
 }
+
 .main-active {
   opacity: 0;
   animation: fadeIn 1s 1;
   animation-fill-mode: forwards;
 }
+
 @keyframes fadeIn {
   100% {
     opacity: 1;
   }
 }
+
 body {
   margin: 0;
   height: auto;
-  background-color: #000;
+  background-color: var(--backgroundColor);
   flex-grow: 1;
   --cWidth: calc(100% - 30px);
   --cMaxWidth: 1920px;
   max-width: 100vw;
   overflow-x: hidden;
 }
+
 .main-body {
   max-width: 100vw;
   overflow-x: hidden;
@@ -75,15 +119,18 @@ body {
   margin: auto;
   position: relative;
 }
+
 .container1 {
   width: var(--cWidth);
   height: var(--vh);
   margin: auto;
   position: relative;
 }
+
 .split-line {
   overflow: hidden;
 }
+
 .split-h2 {
   overflow: hidden;
   display: flex;
@@ -91,24 +138,67 @@ body {
   flex-wrap: nowrap;
 }
 
+/* Techstack Section Styling */
 .techstack {
   width: 100%;
   position: relative;
   height: var(--vh);
   margin: auto;
-  margin-top: 50px;
-  margin-bottom: -100px;
+  margin-top: 60px;
+  margin-bottom: -60px;
 }
 
-.techstack h2 {
-  font-size: 80px;
-  text-align: center;
+.techstack-header {
   position: absolute;
   width: 100%;
-  top: 120px;
+  top: 90px;
   left: 0;
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.techstack-header h2 {
+  font-size: 80px;
   font-weight: 400;
   text-transform: uppercase;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.4) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.techstack-subtitle {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  opacity: 0.8;
+  margin-top: 10px;
+  font-family: "Space Grotesk", monospace;
+}
+
+.tech-canvas {
+  cursor: grab;
+}
+.tech-canvas:active {
+  cursor: grabbing;
+}
+
+/* Common Cyberpunk Glass Card Utility */
+.glass-panel {
+  background: var(--bgSurface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--borderGlass);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--borderGlassHover);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(194, 164, 255, 0.1);
 }
 
 @media screen and (min-width: 768px) {
@@ -116,8 +206,13 @@ body {
     --cWidth: 94%;
   }
 }
+
 @media screen and (max-width: 900px) {
-  .techstack h2 {
-    font-size: 40px;
+  .techstack-header h2 {
+    font-size: 42px;
+  }
+  .techstack-subtitle {
+    font-size: 12px;
   }
 }
+

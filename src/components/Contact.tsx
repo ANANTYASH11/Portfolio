@@ -99,12 +99,12 @@ const Contact = () => {
   return (
     <div className="contact-section section-container" id="contact">
       <div className="contact-container">
-        <h3>Contact</h3>
+        <h3 className="title">Hire Me</h3>
         
         <div className="contact-grid">
           {/* Query Form Section */}
           <div className="contact-form-box">
-            <h4 className="form-title">Send a Message</h4>
+            <h4 className="form-title">Hire Me · Send a Message</h4>
             <form onSubmit={handleSubmit} className="query-form">
               <div className="form-group-row">
                 <div className="form-field">
@@ -163,7 +163,7 @@ const Contact = () => {
               </div>
 
               <button type="submit" className="submit-btn" disabled={status === "submitting"} data-cursor="disable">
-                {status === "submitting" ? "Sending..." : "Submit Inquiry"}
+                {status === "submitting" ? "Sending..." : "Hire Me / Send Message"}
               </button>
 
               {status === "success" && (
@@ -193,7 +193,7 @@ const Contact = () => {
               </div>
               <div className="contact-profile-info">
                 <h4 className="contact-profile-name">Anant Yash</h4>
-                <p className="contact-profile-role">Full Stack Developer · AI Engineer · Freelancer</p>
+                <p className="contact-profile-role">Available for Hire · Full Stack Developer · AI Engineer</p>
               </div>
             </div>
 

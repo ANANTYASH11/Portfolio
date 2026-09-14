@@ -6,6 +6,12 @@ import { useLoading } from "../../context/LoadingProvider";
 import handleResize from "./utils/resizeUtils";
 import setAnimations from "./utils/animationUtils";
 import { setProgress } from "../Loading";
+import {
+  handleMouseMove,
+  handleTouchMove,
+  handleTouchEnd,
+  handleHeadRotation,
+} from "./utils/mouseUtils";
 
 const Scene = () => {
   const canvasDiv = useRef<HTMLDivElement | null>(null);
@@ -20,18 +26,23 @@ const Scene = () => {
 
     const scene = new THREE.Scene();
     const rect = canvasDiv.current.getBoundingClientRect();
-    const container = { width: rect.width || window.innerWidth, height: rect.height || window.innerHeight };
+    const container = {
+      width: rect.width || window.innerWidth,
+      height: rect.height || window.innerHeight,
+    };
     const aspect = container.width / container.height;
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
-      antialias: false,
+      antialias: true,
       powerPreference: "high-performance",
     });
     renderer.setSize(container.width, container.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1;
+    renderer.toneMappingExposure = 1.05;
 
     // Append inner hover container and canvas renderer
     const hoverDiv = document.createElement("div");
@@ -45,8 +56,39 @@ const Scene = () => {
     camera.updateProjectionMatrix();
 
     let screenLight: any | null = null;
+    let headBone: THREE.Object3D | null = null;
+    let neckBone: THREE.Object3D | null = null;
+    let spineBone: THREE.Object3D | null = null;
     let mixer: THREE.AnimationMixer | null = null;
     const clock = new THREE.Clock();
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    const onMouseMove = (e: MouseEvent) => {
+      handleMouseMove(e, (x, y) => {
+        mouseX = x;
+        mouseY = y;
+      });
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      handleTouchMove(e, (x, y) => {
+        mouseX = x;
+        mouseY = y;
+      });
+    };
+
+    const onTouchEnd = () => {
+      handleTouchEnd((x, y) => {
+        mouseX = x;
+        mouseY = y;
+      });
+    };
+
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
 
     const light = setLighting(scene);
     const progress = setProgress((value) => setLoading(value));
@@ -63,6 +105,37 @@ const Scene = () => {
 
         const characterInstance = gltf.scene;
         scene.add(characterInstance);
+
+        // Find tracking bones (supporting both dot and non-dot naming)
+        headBone =
+          characterInstance.getObjectByName("spine.006") ||
+          characterInstance.getObjectByName("spine006") ||
+          characterInstance.getObjectByName("head") ||
+          characterInstance.getObjectByName("Head") ||
+          null;
+        neckBone =
+          characterInstance.getObjectByName("spine.005") ||
+          characterInstance.getObjectByName("spine005") ||
+          characterInstance.getObjectByName("neck") ||
+          characterInstance.getObjectByName("Neck") ||
+          null;
+        spineBone =
+          characterInstance.getObjectByName("spine.003") ||
+          characterInstance.getObjectByName("spine003") ||
+          characterInstance.getObjectByName("spine.002") ||
+          characterInstance.getObjectByName("spine002") ||
+          null;
+
+        // Initialize straight, level, forward-looking orientation immediately
+        if (neckBone) {
+          neckBone.rotation.set(0, 0, 0);
+        }
+        if (headBone) {
+          headBone.rotation.set(-0.01, 0, 0);
+        }
+        if (spineBone) {
+          spineBone.rotation.set(0, 0, 0);
+        }
 
         const animations = setAnimations(gltf);
         animations.hover(gltf, hoverDiv);
@@ -115,13 +188,22 @@ const Scene = () => {
       animFrameId = requestAnimationFrame(animate);
       if (!isVisible) return;
 
-      if (screenLight) {
-        light.setPointLight(screenLight);
-      }
       const delta = clock.getDelta();
+
+      // Update animation mixer first
       if (mixer) {
         mixer.update(delta);
       }
+
+      // Straight, bold, forward-looking posture & cursor tracking
+      if (headBone || neckBone) {
+        handleHeadRotation(headBone, neckBone, spineBone, mouseX, mouseY, 0.08);
+      }
+
+      if (screenLight) {
+        light.setPointLight(screenLight);
+      }
+
       renderer.render(scene, camera);
     };
     animate();
@@ -131,6 +213,9 @@ const Scene = () => {
       cancelAnimationFrame(animFrameId);
       observer.disconnect();
       cleanupResize?.();
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
       scene.clear();
       renderer.dispose();
       renderer.forceContextLoss();
@@ -145,7 +230,13 @@ const Scene = () => {
       <div className="character-model">
         <div className="character-rim"></div>
         <div
-          style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
           ref={canvasDiv}
         ></div>
       </div>
@@ -154,3 +245,4 @@ const Scene = () => {
 };
 
 export default Scene;
+

@@ -20,8 +20,12 @@ const setCharacter = (camera: THREE.PerspectiveCamera) => {
     });
     setCharTimeline(character, camera);
     setAllTimeline();
-    const footR = character.getObjectByName("footR");
-    const footL = character.getObjectByName("footL");
+    const footR =
+      character.getObjectByName("footR") ||
+      character.getObjectByName("foot.R");
+    const footL =
+      character.getObjectByName("footL") ||
+      character.getObjectByName("foot.L");
     if (footR) footR.position.y = 3.36;
     if (footL) footL.position.y = 3.36;
     dracoLoader.dispose();

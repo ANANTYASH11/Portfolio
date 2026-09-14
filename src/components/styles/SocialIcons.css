@@ -44,43 +44,52 @@
   transition: transform 0.3s ease-out;
 }
 .resume-button {
-  position: absolute;
-  z-index: 99;
-  display: flex;
-  gap: 5px;
-  bottom: 40px;
-  right: 0;
+  position: fixed;
+  z-index: 9990;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  bottom: 34px;
+  right: 104px;
   width: auto;
   text-wrap: nowrap;
-  letter-spacing: 4px;
-  font-size: 15px;
-  line-height: 15px;
+  letter-spacing: 2px;
+  font-size: 13px;
+  line-height: 1;
   font-weight: 600;
-  color: #5e5e5e;
+  color: #ffffff;
+  padding: 12px 20px;
+  background: rgba(18, 14, 28, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(194, 164, 255, 0.25);
+  border-radius: 9999px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
   cursor: pointer;
-  transition: 0.5s;
-  transform-origin: left bottom;
-  transform: translateX(100%) rotateZ(-90deg);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
+
 .resume-button:hover {
-  color: #fff;
+  color: #ffffff;
+  background: rgba(28, 20, 44, 0.95);
+  border-color: rgba(194, 164, 255, 0.6);
+  box-shadow: 0 6px 24px rgba(194, 164, 255, 0.3), 0 0 16px rgba(194, 164, 255, 0.2);
+  transform: translateY(-2px);
 }
-div.resume-button span {
-  color: #fff;
-  font-size: 17px;
-  margin-top: -1px;
+
+.resume-button span {
+  color: #c2a4ff;
+  font-size: 16px;
   display: flex;
   align-items: center;
+  transition: transform 0.3s ease;
 }
-.check-line {
-  position: fixed;
-  top: 655px;
-  left: 0;
-  height: 1px;
-  background-color: #ffffff;
-  width: 100%;
-  z-index: 99999;
+
+.resume-button:hover span {
+  transform: scale(1.15);
 }
+
 @media only screen and (min-width: 900px) {
   .social-icons {
     display: flex;
@@ -90,14 +99,12 @@ div.resume-button span {
     font-size: 28px;
   }
 }
-@media only screen and (min-width: 768px) {
+
+@media only screen and (max-width: 767px) {
   .resume-button {
-    transform: none;
-    font-size: 20px;
-    line-height: 20px;
-  }
-  div.resume-button span {
-    font-size: 23px;
-    margin-top: -1.5px;
+    bottom: 84px;
+    right: 20px;
+    padding: 10px 16px;
+    font-size: 12px;
   }
 }
