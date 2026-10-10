@@ -5,6 +5,7 @@
   position: relative;
   height: var(--vh);
 }
+
 .landing-container {
   width: var(--cWidth);
   margin: auto;
@@ -12,6 +13,7 @@
   position: relative;
   max-width: var(--cMaxWidth);
 }
+
 .landing-circle1 {
   top: 0%;
   left: 0%;
@@ -27,25 +29,26 @@
   will-change: transform;
   contain: strict;
 }
+
 .nav-fade {
   position: fixed;
   top: 0;
   width: 100%;
   height: 130px;
-  background-image: linear-gradient(
-    0deg,
-    transparent,
-    var(--backgroundColor) 70%
-  );
+  background-image: linear-gradient(0deg,
+      transparent,
+      var(--backgroundColor) 70%);
   pointer-events: none;
   z-index: 12;
   opacity: 0;
   left: 0;
 }
+
 @keyframes loadingCircle {
   0% {
     transform: translate(-95%, -75%) rotateZ(0deg);
   }
+
   100% {
     transform: translate(-95%, -75%) rotateZ(360deg);
   }
@@ -68,11 +71,13 @@
   will-change: transform;
   contain: strict;
 }
+
 @keyframes loadingCircle2 {
   100% {
     transform: translate(calc(100% - 2px), -50%) rotate(360deg);
   }
 }
+
 .landing-video,
 .landing-image {
   position: absolute;
@@ -81,23 +86,23 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
 .landing-image img {
   height: 100%;
   z-index: 2;
   position: relative;
 }
+
 .character-rim {
   position: absolute;
   width: 480px;
   height: 480px;
   z-index: 1;
-  background: radial-gradient(
-    circle,
-    rgba(194, 164, 255, 0.45) 0%,
-    rgba(139, 92, 246, 0.28) 35%,
-    rgba(6, 182, 212, 0.18) 65%,
-    transparent 100%
-  );
+  background: radial-gradient(circle,
+      rgba(194, 164, 255, 0.45) 0%,
+      rgba(139, 92, 246, 0.28) 35%,
+      rgba(6, 182, 212, 0.18) 65%,
+      transparent 100%);
   box-shadow: 0 0 100px 30px rgba(168, 85, 247, 0.3), inset 0 0 60px rgba(6, 182, 212, 0.2);
   filter: blur(45px);
   border-radius: 50%;
@@ -114,6 +119,7 @@
     filter: blur(45px);
     box-shadow: 0 0 100px 30px rgba(168, 85, 247, 0.25);
   }
+
   100% {
     filter: blur(55px);
     box-shadow: 0 0 130px 45px rgba(6, 182, 212, 0.32);
@@ -133,21 +139,21 @@
   bottom: 0px;
   pointer-events: inherit;
 }
+
 .character-model::after {
   content: "";
   width: 100vw;
   height: 250px;
-  background-image: linear-gradient(
-    to bottom,
-    transparent,
-    var(--backgroundColor) 70%
-  );
+  background-image: linear-gradient(to bottom,
+      transparent,
+      var(--backgroundColor) 70%);
   bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9;
   position: absolute;
 }
+
 .character-model::before {
   content: "";
   width: 100vw;
@@ -159,16 +165,19 @@
   z-index: 9;
   position: absolute;
 }
+
 .character-loaded .character-rim {
   animation: backlight 3s forwards;
   animation-delay: 0.3s;
   opacity: 0;
 }
+
 .character-model canvas {
   position: relative;
   pointer-events: none;
   z-index: 2;
 }
+
 .character-hover {
   position: absolute;
   width: 280px;
@@ -179,6 +188,7 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
 }
+
 .landing-intro {
   position: absolute;
   z-index: 9;
@@ -240,10 +250,25 @@
 }
 
 @keyframes scrollDrop {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  50.1% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  50.1% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
 
 .landing-info {
@@ -254,6 +279,7 @@
   top: inherit;
   z-index: 9;
 }
+
 .landing-info h3 {
   font-size: 22px;
   letter-spacing: 2px;
@@ -280,8 +306,7 @@ h2.landing-info-h2 {
 }
 
 
-.landing-h2-1,
-.landing-h2-2 {
+.landing-h2-1 {
   position: absolute;
   top: 0;
   left: 0;
@@ -290,61 +315,84 @@ h2.landing-info-h2 {
   z-index: 5;
 }
 
+.landing-h2-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  color: #c481ff;
+  z-index: 5;
+  opacity: 0;
+}
+
 @media screen and (min-width: 500px) {
   .landing-circle2 {
     display: block;
   }
+
   .character-model {
     z-index: 0;
   }
+
   .landing-info h3 {
     font-size: 18px;
   }
+
   .landing-intro h2 {
     font-size: 22px;
     font-weight: 500;
   }
+
   .landing-intro h1 {
     font-size: 46px;
     line-height: 44px;
     font-weight: 800;
   }
+
   .landing-info h2,
   h2.landing-info-h2,
   .landing-info h2:not(.landing-info-h2) {
     font-size: 38px;
     line-height: 44px;
   }
+
   .landing-info h2:not(.landing-info-h2) {
     top: 22px;
   }
 }
+
 @media screen and (min-width: 768px) {
   .character-model {
     height: 80vh;
   }
+
   .landing-intro h2 {
     font-size: 28px;
     font-weight: 600;
   }
+
   .landing-intro h1 {
     font-size: 62px;
     line-height: 56px;
     font-weight: 800;
   }
+
   .landing-info h3 {
     font-size: 25px;
   }
+
   .landing-info h2,
   h2.landing-info-h2,
   .landing-info h2:not(.landing-info-h2) {
     font-size: 55px;
     line-height: 60px;
   }
+
   .landing-info h2:not(.landing-info-h2) {
     top: 30px;
   }
 }
+
 @media screen and (min-width: 1025px) {
   .character-model {
     height: 100vh;
@@ -352,10 +400,12 @@ h2.landing-info-h2 {
     z-index: 11;
     position: fixed;
   }
+
   .character-model::after,
   .character-model::before {
     display: none;
   }
+
   .landing-intro {
     top: 50%;
     left: 4%;
@@ -372,6 +422,7 @@ h2.landing-info-h2 {
     left: 66%;
     right: auto;
   }
+
   .landing-info h2,
   .landing-info-h2 {
     font-size: 55px;
@@ -380,6 +431,7 @@ h2.landing-info-h2 {
     width: 500px;
   }
 }
+
 @media screen and (min-width: 1200px) {
   .landing-intro {
     top: 50%;
@@ -398,27 +450,33 @@ h2.landing-info-h2 {
     right: auto;
   }
 }
+
 @media screen and (min-width: 1600px) {
   .landing-intro {
     left: 6%;
     right: auto;
   }
+
   .landing-info {
     left: 70%;
     right: auto;
   }
+
   .landing-intro h2 {
     font-size: 38px;
     font-weight: 600;
   }
+
   .landing-intro h1 {
     font-size: 88px;
     line-height: 80px;
     font-weight: 900;
   }
+
   .landing-info h3 {
     font-size: 35px;
   }
+
   .landing-info h2,
   .landing-info-h2 {
     font-size: 75px;

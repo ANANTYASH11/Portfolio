@@ -9,14 +9,14 @@ export function initialFX() {
   activeSplitTexts.forEach((st) => {
     try {
       st.revert();
-    } catch (e) {}
+    } catch (e) { }
   });
   activeSplitTexts = [];
 
   activeTimelines.forEach((tl) => {
     try {
       tl.kill();
-    } catch (e) {}
+    } catch (e) { }
   });
   activeTimelines = [];
 
@@ -117,6 +117,10 @@ function LoopText(Text1: SplitText, Text2: SplitText) {
     ease: "power3.inOut",
     stagger: 0.03,
   })
+    .call(() => {
+      gsap.set(".landing-h2-2", { opacity: 1 });
+      gsap.set(".landing-h2-1", { opacity: 0 });
+    })
     .fromTo(
       Text2.chars,
       { y: 80, opacity: 0 },
@@ -140,6 +144,10 @@ function LoopText(Text1: SplitText, Text2: SplitText) {
       },
       "+=3.5"
     )
+    .call(() => {
+      gsap.set(".landing-h2-1", { opacity: 1 });
+      gsap.set(".landing-h2-2", { opacity: 0 });
+    })
     .fromTo(
       Text1.chars,
       { y: 80, opacity: 0 },

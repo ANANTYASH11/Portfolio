@@ -1,0 +1,1345 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   💎 THE TECH VAULT — OBSIDIAN CYBERNETIC DESIGN SYSTEM
+   Matched to Portfolio Typography, Colors, Gradients & Glass Aesthetics
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --vault-bg: var(--backgroundColor, #08060c);
+  --vault-card-bg: var(--bgSurface, rgba(18, 14, 28, 0.72));
+  --vault-card-elevated: var(--bgSurfaceElevated, rgba(28, 20, 44, 0.85));
+  --vault-glass-border: var(--borderGlass, rgba(194, 164, 255, 0.12));
+  --vault-glass-border-hover: var(--borderGlassHover, rgba(194, 164, 255, 0.35));
+  --vault-inner-highlight: rgba(255, 255, 255, 0.12);
+  --vault-accent-violet: var(--accentColor, #c2a4ff);
+  --vault-accent-light: var(--accentVioletLight, #e2d4ff);
+  --vault-accent-cyan: var(--cyanAccent, #00f0ff);
+  --vault-accent-glow: var(--accentGlow, rgba(194, 164, 255, 0.4));
+  --vault-cyan-glow: var(--cyanGlow, rgba(0, 240, 255, 0.35));
+  --vault-tile-size: 154px;
+  --vault-tile-height: 176px;
+  --vault-transition-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   STEP 1: THE TRIGGER BUTTON ("VIEW DETAILS")
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.vault-trigger-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px auto 16px auto;
+  position: relative;
+  z-index: 20;
+}
+
+.vault-view-details-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 34px;
+  border-radius: 9999px;
+  background: rgba(22, 16, 36, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  color: var(--accentVioletLight, #e2d4ff);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid rgba(194, 164, 255, 0.25);
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45), 0 0 20px rgba(170, 66, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: visible;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Rotating conic-gradient border matching portfolio palette */
+.vault-view-details-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: conic-gradient(from var(--conic-angle, 0deg),
+      #c2a4ff 0%,
+      #9b63ff 35%,
+      #00f0ff 70%,
+      #c2a4ff 100%);
+  z-index: -1;
+  animation: vaultConicRotate 4.5s linear infinite;
+  opacity: 0.85;
+}
+
+/* Breathing glow */
+.vault-view-details-btn::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 50% 50%,
+      rgba(194, 164, 255, 0.4),
+      rgba(0, 240, 255, 0.2),
+      transparent 70%);
+  filter: blur(14px);
+  z-index: -2;
+  animation: vaultBreatheGlow 3.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@property --conic-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes vaultConicRotate {
+  0% {
+    --conic-angle: 0deg;
+  }
+
+  100% {
+    --conic-angle: 360deg;
+  }
+}
+
+@keyframes vaultBreatheGlow {
+  0% {
+    opacity: 0.45;
+    transform: scale(0.98);
+  }
+
+  100% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+/* 3s Shimmer sweep */
+.vault-btn-shimmer {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 100%);
+  transform: skewX(-24deg);
+  pointer-events: none;
+  animation: vaultShimmerSweep 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes vaultShimmerSweep {
+  0% {
+    left: -150%;
+  }
+
+  30%,
+  100% {
+    left: 200%;
+  }
+}
+
+.vault-btn-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vault-btn-text {
+  color: #ffffff;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+/* Animated Arrow */
+.vault-btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(194, 164, 255, 0.15);
+  color: var(--accentColor, #c2a4ff);
+  font-size: 14px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, color 0.25s ease;
+}
+
+.vault-view-details-btn:hover {
+  background: rgba(170, 66, 255, 0.22);
+  border-color: rgba(194, 164, 255, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 24px rgba(170, 66, 255, 0.3);
+}
+
+.vault-view-details-btn:hover .vault-btn-arrow {
+  transform: translateX(4px);
+  background: var(--accentColor, #c2a4ff);
+  color: #08060c;
+}
+
+.vault-view-details-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--cyanAccent, #00f0ff), 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+/* Click Ripple Ring */
+.vault-btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+      rgba(194, 164, 255, 0.7) 0%,
+      rgba(0, 240, 255, 0.25) 70%,
+      transparent 100%);
+  transform: scale(0);
+  pointer-events: none;
+  animation: vaultRippleExpand 0.65s ease-out forwards;
+}
+
+@keyframes vaultRippleExpand {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   STEP 2: THE PORTAL MODAL OVERLAY & SHOCKWAVE
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.vault-portal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--backgroundColor, #08060c);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eae5ec;
+  font-family: "Geist", "Plus Jakarta Sans", sans-serif;
+  padding: 0 0 100px 0;
+  clip-path: circle(0% at var(--portal-origin-x, 50%) var(--portal-origin-y, 50%));
+  will-change: clip-path, filter;
+}
+
+/* Violet Shockwave Ring */
+.vault-shockwave-ring {
+  position: fixed;
+  top: var(--portal-origin-y, 50%);
+  left: var(--portal-origin-x, 50%);
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 3px solid rgba(194, 164, 255, 0.85);
+  box-shadow: 0 0 50px rgba(194, 164, 255, 0.9), 0 0 100px rgba(0, 240, 255, 0.55);
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transform: scale(1);
+}
+
+/* Ambient Layer: Aurora Blobs & Rune Particles */
+.vault-ambient-aurora {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.aurora-blob {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.16;
+  animation: auroraFloat 18s ease-in-out infinite alternate;
+}
+
+.aurora-blob-1 {
+  top: -150px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(194, 164, 255, 0.4) 0%, rgba(155, 99, 255, 0.15) 70%, transparent 100%);
+}
+
+.aurora-blob-2 {
+  bottom: -150px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.3) 0%, rgba(194, 164, 255, 0.12) 70%, transparent 100%);
+  animation-duration: 22s;
+}
+
+@keyframes auroraFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(80px, 60px) scale(1.15);
+  }
+
+  100% {
+    transform: translate(-50px, 100px) scale(0.95);
+  }
+}
+
+.vault-runes-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.35;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   PORTAL HEADER & HERO
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.vault-header-wrap {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 44px 24px 20px 24px;
+  text-align: center;
+}
+
+/* Floating Close Button (X) */
+.vault-close-btn {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(22, 16, 36, 0.88);
+  border: 1px solid rgba(194, 164, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(194, 164, 255, 0.25);
+  color: var(--accentColor, #c2a4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  cursor: pointer;
+  z-index: 10010;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.25s var(--vault-transition-spring);
+}
+
+.vault-close-btn:hover {
+  color: #ffffff;
+  border-color: var(--accentColor, #c2a4ff);
+  box-shadow: 0 0 24px var(--accentGlow, rgba(194, 164, 255, 0.5));
+  transform: scale(1.1) rotate(90deg);
+}
+
+.vault-close-btn:focus-visible {
+  outline: 2px solid var(--cyanAccent, #00f0ff);
+  outline-offset: 4px;
+}
+
+.vault-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  background: rgba(194, 164, 255, 0.1);
+  border: 1px solid rgba(194, 164, 255, 0.25);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accentColor, #c2a4ff);
+  margin-bottom: 16px;
+}
+
+/* SplitText Heading matching Portfolio Style */
+.vault-main-title {
+  font-family: "Geist", sans-serif;
+  font-size: clamp(34px, 5.5vw, 64px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 auto 12px auto;
+  text-transform: uppercase;
+}
+
+.vault-split-char {
+  display: inline-block;
+  will-change: transform, opacity;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vault-split-char.accent {
+  background: linear-gradient(0deg, #9b63ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle matching Portfolio Style */
+.vault-subtitle {
+  font-family: "Space Grotesk", monospace;
+  font-size: clamp(12px, 1.6vw, 14px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accentColor, #c2a4ff);
+  opacity: 0.85;
+  margin-bottom: 24px;
+}
+
+.vault-ticker-highlight {
+  color: #ffffff;
+  font-weight: 700;
+  font-family: "Space Grotesk", monospace;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   STEP 5: NAVIGATION & UX CONTROLS (STICKY FILTER & SEARCH)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.vault-nav-sticky-bar {
+  position: sticky;
+  top: 16px;
+  z-index: 100;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto 36px auto;
+  padding: 10px 18px;
+  background: rgba(18, 14, 28, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(194, 164, 255, 0.16);
+  border-radius: 9999px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(170, 66, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.vault-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.vault-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #a8a3b2;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+  outline: none;
+}
+
+.vault-filter-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.vault-filter-btn.active {
+  background: rgba(170, 66, 255, 0.24);
+  color: #ffffff;
+  border-color: var(--accentColor, #c2a4ff);
+  box-shadow: 0 4px 18px rgba(170, 66, 255, 0.25);
+}
+
+.vault-filter-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--cyanAccent, #00f0ff);
+}
+
+.vault-pill-count {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  background: rgba(194, 164, 255, 0.12);
+  color: var(--accentVioletLight, #e2d4ff);
+  font-family: "Space Grotesk", monospace;
+}
+
+/* Search Box */
+.vault-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 220px;
+}
+
+.vault-search-input {
+  width: 100%;
+  padding: 8px 16px 8px 36px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(194, 164, 255, 0.18);
+  color: #eae5ec;
+  font-size: 13px;
+  font-family: "Space Grotesk", sans-serif;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.vault-search-input::placeholder {
+  color: #64748b;
+}
+
+.vault-search-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accentColor, #c2a4ff);
+  box-shadow: 0 0 16px rgba(194, 164, 255, 0.3);
+}
+
+.vault-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--accentColor, #c2a4ff);
+  opacity: 0.7;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   STEP 3 & 4: HONEYCOMB CLUSTERS & CRYSTAL HEXAGON TILES
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.vault-domains-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px 140px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+/* SVG Connection Lines Overlay */
+.vault-connections-svg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.vault-connection-line {
+  stroke-dasharray: 6 6;
+  animation: vaultDashFlow 1s linear infinite;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+@keyframes vaultDashFlow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+/* Domain Cluster Card */
+.domain-cluster-card {
+  position: relative;
+  background: rgba(18, 14, 28, 0.65);
+  border: 1px solid rgba(194, 164, 255, 0.16);
+  border-radius: 24px;
+  padding: 26px 24px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.domain-cluster-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(194, 164, 255, 0.1);
+}
+
+.domain-cluster-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.domain-hue-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.domain-cluster-title {
+  font-family: "Geist", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.domain-count-badge {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(194, 164, 255, 0.08);
+  border: 1px solid rgba(194, 164, 255, 0.16);
+  color: var(--accentVioletLight, #e2d4ff);
+}
+
+/* Honeycomb Grid Flex Wrapper */
+.honeycomb-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  padding: 10px 0;
+  perspective: 1200px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   HEXAGON TILE (3D FLIP CONTAINER)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.hex-tile-container {
+  position: relative;
+  width: var(--vault-tile-size);
+  height: var(--vault-tile-height);
+  cursor: pointer;
+  perspective: 1000px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  user-select: none;
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.25s var(--vault-transition-spring);
+  will-change: transform, opacity;
+}
+
+.hex-tile-container:focus-visible {
+  outline: 2px solid var(--cyanAccent, #00f0ff);
+  outline-offset: 6px;
+  border-radius: 12px;
+}
+
+/* Dimmed state when another tech is highlighted */
+.hex-tile-container.dimmed {
+  opacity: var(--vault-dimmed-opacity, 0.22) !important;
+  filter: grayscale(0.7) blur(1px);
+}
+
+/* Highlighted state (related or searched) */
+.hex-tile-container.highlighted {
+  opacity: 1 !important;
+  filter: none;
+  transform: scale(1.06);
+  z-index: 20;
+}
+
+/* 3D Flipper Core */
+.hex-flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.hex-tile-container.flipped .hex-flipper {
+  transform: rotateY(180deg);
+}
+
+/* Common Face Styling (Hexagon Clip-Path) */
+.hex-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px 12px;
+  overflow: hidden;
+}
+
+/* Crystal Glass Front Face matching Portfolio Glass Card */
+.hex-face-front {
+  background: linear-gradient(145deg,
+      rgba(22, 16, 36, 0.88) 0%,
+      rgba(14, 10, 24, 0.94) 100%);
+  border: 1px solid rgba(194, 164, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 10px 24px rgba(0, 0, 0, 0.55);
+  z-index: 2;
+}
+
+/* 1px Inner Highlight Border for Crystal Feel */
+.hex-face-front::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+/* Cursor-following Light Sweep on Hover */
+.hex-light-sweep {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+      rgba(194, 164, 255, 0.25) 0%,
+      transparent 65%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.hex-tile-container:hover .hex-light-sweep {
+  opacity: 1;
+}
+
+/* Primary Skill Slow Pulsing Halo & Corner Star "★" */
+.hex-tile-container.is-primary .hex-face-front::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: radial-gradient(circle, var(--accentGlow, rgba(194, 164, 255, 0.45)) 0%, transparent 70%);
+  animation: primaryHaloPulse 3s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes primaryHaloPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.96);
+  }
+
+  100% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+.hex-star-badge {
+  position: absolute;
+  top: 14px;
+  right: 22px;
+  font-size: 12px;
+  color: var(--accentColor, #c2a4ff);
+  filter: drop-shadow(0 0 6px var(--accentGlow, rgba(194, 164, 255, 0.8)));
+  z-index: 10;
+}
+
+/* Front Face Elements */
+.hex-icon-wrap {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 8px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.hex-tile-container:hover .hex-icon-wrap {
+  transform: scale(1.18);
+  filter: drop-shadow(0 0 14px currentColor);
+}
+
+.hex-title {
+  font-family: "Geist", "Plus Jakarta Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+.hex-tag-pill {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: rgba(194, 164, 255, 0.1);
+  color: var(--accentVioletLight, #e2d4ff);
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(194, 164, 255, 0.15);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   HEXAGON DETAIL BACK FACE (FLIP RESULT)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.hex-face-back {
+  background: linear-gradient(145deg,
+      rgba(28, 20, 44, 0.98) 0%,
+      rgba(14, 10, 24, 0.98) 100%);
+  border: 1px solid rgba(194, 164, 255, 0.35);
+  transform: rotateY(180deg);
+  justify-content: space-between;
+  padding: 22px 14px 18px 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8);
+  font-family: "Geist", "Plus Jakarta Sans", sans-serif;
+}
+
+.hex-back-header {
+  font-family: "Geist", sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.hex-back-desc {
+  font-size: 9.5px;
+  line-height: 1.4;
+  color: #adacac;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hex-back-built {
+  font-family: "Space Grotesk", monospace;
+  font-size: 8.5px;
+  color: var(--cyanAccent, #00f0ff);
+  margin: 4px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hex-back-meter-wrap {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.hex-meter-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 8.5px;
+  color: #a8a3b2;
+  margin-bottom: 2px;
+}
+
+.hex-meter-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.hex-meter-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--accentColor, #c2a4ff) 0%, var(--cyanAccent, #00f0ff) 100%);
+}
+
+.hex-back-exp-badge {
+  font-family: "Space Grotesk", monospace;
+  font-size: 8.5px;
+  font-weight: 600;
+  color: var(--accentVioletLight, #e2d4ff);
+  margin-top: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE DESIGN & ACCESSIBILITY
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .vault-nav-sticky-bar {
+    border-radius: 20px;
+    top: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --vault-tile-size: 140px;
+    --vault-tile-height: 160px;
+  }
+
+  .vault-header-wrap {
+    padding: 30px 16px 12px 16px;
+  }
+
+  .vault-nav-sticky-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .vault-filter-pills {
+    justify-content: center;
+  }
+
+  .vault-search-box {
+    width: 100%;
+  }
+
+  .domain-cluster-card {
+    padding: 18px 12px;
+  }
+
+  /* 2-column clean grid on mobile screens */
+  .honeycomb-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    justify-items: center;
+  }
+
+  .hex-tile-container {
+    width: 100%;
+    max-width: 150px;
+  }
+}
+
+/* Prefers Reduced Motion: skip portal & 3D tilt, use simple fades */
+@media (prefers-reduced-motion: reduce) {
+  .vault-portal-overlay {
+    clip-path: none !important;
+    animation: fadeInPortal 0.3s ease-out forwards;
+  }
+
+  .vault-shockwave-ring {
+    display: none !important;
+  }
+
+  .hex-tile-container {
+    transform: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+
+  .hex-flipper {
+    transition: transform 0.2s ease !important;
+  }
+
+  .vault-view-details-btn::before,
+  .vault-view-details-btn::after,
+  .vault-btn-shimmer,
+  .aurora-blob {
+    animation: none !important;
+  }
+}
+
+@keyframes fadeInPortal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   VAULT BACK HEADER, TITLE, CONTROLS & FILTER SYSTEM
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.album-header-wrap {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.album-title-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.cert-vault-header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.cert-vault-eyebrow-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cert-vault-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyanAccent, #00f0ff);
+  box-shadow: 0 0 10px var(--cyanAccent, #00f0ff);
+  animation: vaultPulseDot 2s infinite ease-in-out;
+}
+
+@keyframes vaultPulseDot {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+.cert-vault-eyebrow {
+  font-family: "Space Grotesk", monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--accentColor, #c2a4ff);
+  text-transform: uppercase;
+}
+
+.cert-vault-badge-total {
+  font-family: "Space Grotesk", monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(194, 164, 255, 0.14);
+  border: 1px solid rgba(194, 164, 255, 0.28);
+  color: #ffffff;
+}
+
+.album-main-title {
+  font-family: "Geist", "Space Grotesk", sans-serif;
+  font-size: clamp(34px, 4.8vw, 56px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 4px 0 10px 0;
+  display: flex;
+  align-items: baseline;
+  text-transform: uppercase;
+}
+
+.vault-title-mask {
+  display: inline-block;
+  overflow: visible;
+}
+
+.album-title-cert .vault-title-char {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ffffff;
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.album-title-highlight .vault-title-char {
+  background: linear-gradient(135deg, #c481ff 0%, #aa42ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #c481ff;
+  font-style: italic;
+  font-weight: 500;
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.vault-title-space {
+  display: inline-block;
+  width: 0.35em;
+}
+
+.cert-vault-subtitle {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  color: #a8a3b2;
+  margin: 0;
+  max-width: 650px;
+  line-height: 1.5;
+}
+
+/* Controls Cluster */
+.album-controls-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.album-sound-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: rgba(22, 16, 36, 0.8);
+  border: 1px solid rgba(194, 164, 255, 0.2);
+  color: var(--accentVioletLight, #e2d4ff);
+  font-family: "Space Grotesk", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.album-sound-btn:hover {
+  background: rgba(170, 66, 255, 0.25);
+  border-color: rgba(194, 164, 255, 0.45);
+  color: #ffffff;
+}
+
+.album-close-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(22, 16, 36, 0.85);
+  border: 1px solid rgba(194, 164, 255, 0.25);
+  color: var(--accentColor, #c2a4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.album-close-btn:hover {
+  background: rgba(170, 66, 255, 0.3);
+  color: #ffffff;
+  transform: rotate(90deg) scale(1.08);
+}
+
+/* Filter Navigation & Search Row */
+.cert-vault-nav-search-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding: 8px 16px;
+  background: rgba(18, 14, 28, 0.65);
+  border: 1px solid rgba(194, 164, 255, 0.14);
+  border-radius: 9999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.album-filters-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.album-filter-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #9d97aa;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 2;
+}
+
+.album-filter-chip:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.album-filter-chip.active {
+  color: #ffffff;
+  background: rgba(170, 66, 255, 0.24);
+  border-color: rgba(194, 164, 255, 0.4);
+  box-shadow: 0 4px 16px rgba(170, 66, 255, 0.2);
+}
+
+.album-chip-count {
+  font-family: "Space Grotesk", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(194, 164, 255, 0.12);
+  color: var(--accentVioletLight, #e2d4ff);
+}
+
+.album-tab-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 9999px;
+  background: rgba(170, 66, 255, 0.28);
+  border: 1px solid rgba(194, 164, 255, 0.45);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.album-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(194, 164, 255, 0.18);
+  color: #a8a3b2;
+  font-family: "Space Grotesk", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.album-reset-btn:hover {
+  background: rgba(194, 164, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(194, 164, 255, 0.35);
+}
+
+/* Status Meta Bar & XP Progress */
+.cert-vault-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 16px 0 20px 0;
+  padding: 12px 18px;
+  background: rgba(18, 14, 28, 0.5);
+  border: 1px solid rgba(194, 164, 255, 0.1);
+  border-radius: 14px;
+}
+
+.cert-vault-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Space Grotesk", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accentColor, #c2a4ff);
+  letter-spacing: 0.08em;
+}
+
+.cert-vault-progress-wrap {
+  flex: 1;
+  max-width: 450px;
+}
+
+.progress-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+}
+
+.progress-label-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #9d97aa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.progress-ratio {
+  font-family: "Space Grotesk", monospace;
+  font-weight: 600;
+  color: var(--accentVioletLight, #e2d4ff);
+}
+
+.album-xp-outer-bar {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.album-xp-fill-bar {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #8b5cf6 0%, #00f0ff 100%);
+  position: relative;
+  transition: width 0.4s ease;
+}
+
+.vault-progress-rider {
+  position: absolute;
+  right: -2px;
+  top: -8px;
+  font-size: 14px;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+}

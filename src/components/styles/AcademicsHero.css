@@ -1,0 +1,1546 @@
+/* ============================================================================
+   🏛️ ACADEMICS HERO — "THE DEGREE AS HERO" BALANCED 3-COLUMN COMPOSITION
+   Art Direction: Museum Staging · Restrained Depth · AA Contrast
+   Palette: Near-black #08060c · Violet/Lavender Gradient · Cyan Verified Accent · Green COMPLETED
+   ============================================================================ */
+
+/* ─── Main Section Container ─── */
+.academics-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  box-sizing: border-box;
+  background-color: var(--backgroundColor, #08060c);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Clearance: fixed navbar height + 24px */
+  padding-top: calc(60px + 24px); /* 84px */
+  scroll-margin-top: 96px;
+  /* Clearance: floating RESUME button */
+  padding-bottom: 120px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.academics-hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px; /* Strict 48px gap from heading to stage */
+  z-index: 2;
+}
+
+/* ─── Top Header Block ─── */
+.academics-hero-header {
+  text-align: center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.academics-hero-eyebrow {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 11px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #eae5ec;
+  opacity: 0.45;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.academics-hero-heading {
+  font-family: "Geist", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.academics-hero-heading em {
+  font-style: normal; /* Non-italic per requirement */
+  font-weight: 600;
+  background: linear-gradient(135deg, #c481ff 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.academics-hero-subtitle {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(234, 229, 236, 0.65);
+  max-width: 52ch;
+  margin: 0;
+  text-align: center;
+}
+
+/* ─── 3-Column Balanced Stage Grid (Desktop >= 1100px) ─── */
+.academics-three-column-stage {
+  display: grid;
+  grid-template-columns: 1fr clamp(520px, 44vw, 820px) 1fr;
+  column-gap: 48px;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+/* ─── Column 1: Left Rail "AT A GLANCE" ─── */
+.academics-stat-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  width: 100%;
+  z-index: 5;
+}
+
+.stat-rail-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 280px;
+}
+
+.stat-rail-header {
+  margin-bottom: 4px;
+}
+
+.stat-rail-label {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #eae5ec;
+  opacity: 0.45;
+  font-weight: 500;
+}
+
+.stat-rail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.stat-block {
+  border-top: 1px solid rgba(194, 164, 255, 0.12);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.stat-number {
+  font-family: "Geist", sans-serif;
+  font-size: clamp(2.25rem, 3.5vw, 3.5rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.stat-caption {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
+  color: rgba(234, 229, 236, 0.65);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ─── Column 2: Center Anchor & Depth Backdrop ─── */
+.academics-stage-center-anchor {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.certificate-backdrop-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Giant Outlined "IIT G" Drifting 40px with Scroll Parallax */
+.backdrop-outline-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Geist", sans-serif;
+  font-size: clamp(12rem, 28vw, 28rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  color: transparent;
+  user-select: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* Soft Violet Spotlight Cone (16% opacity) */
+.backdrop-spotlight-cone {
+  position: absolute;
+  top: -35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 720px;
+  height: 520px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(139, 92, 246, 0.32) 0%,
+    rgba(168, 85, 247, 0.12) 45%,
+    transparent 75%
+  );
+  filter: blur(35px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Two Faint Dark Cards Fanned at -4deg and +4deg */
+.backdrop-fanned-cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 98%;
+  height: 98%;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.backdrop-fanned-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 14, 28, 0.65);
+  border: 1px solid rgba(194, 164, 255, 0.12);
+  border-radius: 14px;
+  opacity: 0.3;
+  filter: blur(2px);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.backdrop-fanned-card.card-left {
+  transform: rotate(-4deg) scale(0.96);
+}
+
+.backdrop-fanned-card.card-right {
+  transform: rotate(4deg) scale(0.96);
+}
+
+.backdrop-fanned-cards:hover .backdrop-fanned-card.card-left {
+  transform: rotate(-6deg) scale(0.98);
+  opacity: 0.45;
+  border-color: rgba(194, 164, 255, 0.25);
+}
+
+.backdrop-fanned-cards:hover .backdrop-fanned-card.card-right {
+  transform: rotate(6deg) scale(0.98);
+  opacity: 0.45;
+  border-color: rgba(194, 164, 255, 0.25);
+}
+
+/* Floor Reflection Under Certificate (8% opacity) */
+.backdrop-floor-reflection {
+  position: absolute;
+  bottom: -35px;
+  width: 92%;
+  height: 45px;
+  overflow: hidden;
+  pointer-events: none;
+  filter: blur(3px);
+  transform: scaleY(-1);
+  opacity: 0.08;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent 85%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent 85%);
+  z-index: 1;
+}
+
+.backdrop-floor-reflection img {
+  width: 100%;
+  height: auto;
+}
+
+.backdrop-reflection-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--backgroundColor, #08060c));
+}
+
+/* ─── Hero Certificate Object Treatment (Museum Frame & Mat) ─── */
+.hero-cert-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  width: 100%;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+}
+
+.hero-cert-stage.details-unfolded {
+  transform: scale(0.9);
+}
+
+/* Certificate 3D Card with Bevelled Lavender-Tinted Frame */
+.hero-cert-card.museum-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1730 / 1180;
+  background: #0c0914;
+  border: 1px solid rgba(194, 164, 255, 0.22);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(230, 200, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6),
+    0 25px 60px -15px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(139, 92, 246, 0.22);
+  cursor: pointer;
+  outline: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 5;
+}
+
+.hero-cert-card.museum-frame:hover {
+  border-color: rgba(194, 164, 255, 0.45);
+  box-shadow: inset 0 1px 2px rgba(230, 200, 255, 0.4),
+    0 35px 70px -10px rgba(0, 0, 0, 0.9),
+    0 0 50px rgba(168, 85, 247, 0.4);
+}
+
+.hero-cert-card.museum-frame:focus-visible {
+  border-color: #00f0ff;
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.45),
+    0 0 35px rgba(0, 240, 255, 0.4);
+}
+
+/* Slight certificate glow when hovering curriculum rows */
+.hero-cert-stage.rail-hover-glow .hero-cert-card.museum-frame {
+  border-color: rgba(194, 164, 255, 0.4);
+  box-shadow: inset 0 1px 2px rgba(230, 200, 255, 0.35),
+    0 30px 65px -10px rgba(0, 0, 0, 0.9),
+    0 0 45px rgba(168, 85, 247, 0.35);
+}
+
+/* Outer Dark Mat Wrapper */
+.cert-museum-mat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 10px solid #08060c;
+  pointer-events: none;
+  z-index: 6;
+  border-radius: 12px;
+}
+
+/* Paper Layer with Tone Filter & Subtle Paper Grain */
+.hero-cert-paper-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #08060c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-cert-image.paper-toned {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0.94) contrast(1.02);
+  border-radius: 4px;
+}
+
+.cert-vignette-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 4px;
+  pointer-events: none;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.32);
+  z-index: 7;
+}
+
+.cert-paper-grain {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 8;
+}
+
+/* Cyan Pinned Verified Credential Badge (Foil Seal Layer) */
+.hero-cert-badge-pill.foil-seal {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(8, 22, 28, 0.9);
+  border: 1px solid rgba(0, 240, 255, 0.45);
+  padding: 5px 12px 5px 10px;
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 240, 255, 0.2);
+  z-index: 10;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.badge-shield-icon {
+  color: #00f0ff;
+  font-size: 13px;
+}
+
+.badge-text {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #00f0ff;
+  text-transform: uppercase;
+}
+
+.badge-pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #00f0ff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00f0ff;
+  animation: badgePulse 2s infinite ease-in-out;
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Light Sweep Animation Across Paper */
+.hero-cert-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+  transform: skewX(-25deg) translateX(-120%);
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* Cursor-Following Glare Layer */
+.hero-cert-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle 320px at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(196, 129, 255, 0.08) 40%,
+    transparent 75%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9;
+}
+
+/* ─── Column 3: Right Rail "THE CURRICULUM" ─── */
+.academics-curriculum-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  z-index: 5;
+}
+
+.curriculum-rail-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.curriculum-rail-header {
+  margin-bottom: 4px;
+}
+
+.curriculum-rail-label {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #eae5ec;
+  opacity: 0.45;
+  font-weight: 500;
+}
+
+.curriculum-rail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.curriculum-row-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 6px 0;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.25s ease;
+}
+
+.curriculum-row-item:hover,
+.curriculum-row-item:focus-visible {
+  transform: translateX(4px);
+}
+
+.curriculum-row-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.curriculum-course-code {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #c481ff;
+  letter-spacing: 0.08em;
+  min-width: 60px;
+}
+
+.curriculum-course-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #f1edfa;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.curriculum-cyan-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+  flex-shrink: 0;
+}
+
+.curriculum-connector-line {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.connector-svg {
+  overflow: visible;
+}
+
+.connector-path {
+  transition: stroke-dashoffset 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Support Strip & Toggle Details Footer ─── */
+.academics-hero-footer {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 10;
+}
+
+.academics-support-strip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #eae5ec;
+  opacity: 0.55;
+  margin: 0;
+  text-align: center;
+}
+
+.support-strip-item {
+  white-space: nowrap;
+}
+
+.support-strip-dot {
+  opacity: 0.4;
+}
+
+.academics-view-details-btn {
+  background: transparent;
+  border: none;
+  color: #c481ff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: color 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
+  outline: none;
+}
+
+.academics-view-details-btn:hover {
+  color: #ffffff;
+  background-color: rgba(196, 129, 255, 0.1);
+}
+
+.academics-view-details-btn:focus-visible {
+  outline: 2px solid #c481ff;
+  outline-offset: 3px;
+}
+
+.chevron-icon {
+  font-size: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chevron-icon.is-flipped {
+  transform: rotate(180deg);
+}
+
+/* ─── Unfolded Drawer (When View Details is Clicked) ─── */
+.academics-unfold-drawer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 10px;
+  animation: drawerFadeIn 0.5s ease forwards;
+}
+
+@keyframes drawerFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Restrained 10px -> 36px Ring Cursor ─── */
+.academic-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(196, 129, 255, 0.85);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.academic-cursor-ring.ring-examining {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(139, 92, 246, 0.18);
+  border-color: #c481ff;
+  backdrop-filter: blur(4px);
+}
+
+.ring-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-label {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 6.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.academic-cursor-ring.ring-hidden {
+  opacity: 0;
+}
+
+.academic-cursor-ring.ring-visible {
+  opacity: 1;
+}
+
+/* ─── Responsive Breakdown (< 1100px) ─── */
+@media (max-width: 1099px) {
+  .academics-three-column-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .backdrop-outline-text {
+    display: none;
+  }
+
+  .academic-cursor-ring {
+    display: none;
+  }
+
+  .academics-stat-rail {
+    align-items: center;
+    text-align: center;
+  }
+
+  .stat-rail-inner {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .stat-rail-list {
+    flex-direction: row;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .stat-block {
+    align-items: center;
+    border-top: none;
+    border-left: 1px solid rgba(194, 164, 255, 0.12);
+    padding-left: 16px;
+    padding-top: 0;
+  }
+
+  .stat-block:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .curriculum-connector-line {
+    display: none;
+  }
+
+  .academics-unfold-drawer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .academics-hero-section {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    min-height: auto;
+  }
+
+  .stat-rail-list {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stat-block {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(194, 164, 255, 0.12);
+    padding-top: 10px;
+    width: 100%;
+  }
+
+  .hero-cert-card.museum-frame {
+    width: 95vw;
+  }
+}
+
+/* ─── Accessibility: Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cert-card,
+  .hero-cert-stage,
+  .curriculum-row-item,
+  .chevron-icon,
+  .backdrop-outline-text {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .hero-cert-sweep,
+  .hero-cert-glare {
+    display: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UNFOLDED DRAWER: TRANSCRIPT & CREDENTIAL FACTS
+   ═══════════════════════════════════════════════════════════ */
+.academics-side-panel {
+  width: 100%;
+}
+
+.academics-side-panel .panel-inner {
+  background: rgba(14, 11, 22, 0.85);
+  border: 1px solid rgba(194, 164, 255, 0.14);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.academics-side-panel .panel-header {
+  margin-bottom: 18px;
+}
+
+.academics-side-panel .panel-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #c481ff;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.academics-side-panel .eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c481ff;
+  box-shadow: 0 0 8px #c481ff;
+}
+
+.academics-side-panel .eyebrow-dot.cyan {
+  background: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+}
+
+.academics-side-panel .panel-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
+}
+
+.academics-side-panel .panel-meta-note {
+  font-size: 13px;
+  color: rgba(234, 229, 236, 0.6);
+  margin: 0;
+}
+
+/* Transcript Panel Course List */
+.transcript-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transcript-row-item {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(194, 164, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.transcript-row-item:hover,
+.transcript-row-item.row-expanded {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(194, 164, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.transcript-row-item .row-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.transcript-row-item .course-code {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #c481ff;
+  letter-spacing: 0.06em;
+  min-width: 65px;
+}
+
+.transcript-row-item .course-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #f1edfa;
+  flex: 1;
+}
+
+.transcript-row-item .course-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #10b981;
+}
+
+.course-accordion-desc {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.transcript-row-item.row-expanded .course-accordion-desc,
+.transcript-row-item:hover .course-accordion-desc {
+  max-height: 90px;
+  opacity: 1;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(194, 164, 255, 0.08);
+}
+
+.course-accordion-desc p {
+  font-size: 12px;
+  color: rgba(234, 229, 236, 0.7);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.capstone-repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #00f0ff;
+  margin-top: 6px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.capstone-repo-link:hover {
+  text-decoration: underline;
+}
+
+.panel-footer-action {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.transcript-view-btn {
+  background: transparent;
+  border: none;
+  color: #c481ff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.transcript-view-btn:hover {
+  color: #ffffff;
+  background: rgba(196, 129, 255, 0.12);
+}
+
+/* Facts Panel */
+.facts-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fact-item {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(194, 164, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.fact-num-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.fact-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.fact-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.fact-tag.green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.fact-tag.violet {
+  background: rgba(139, 92, 246, 0.15);
+  color: #c481ff;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.fact-label {
+  display: block;
+  font-size: 11.5px;
+  color: rgba(234, 229, 236, 0.55);
+  margin-top: 2px;
+}
+
+.fact-text-value {
+  font-size: 17px;
+  font-weight: 600;
+  color: #f1edfa;
+}
+
+.fact-text-sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: #eae5ec;
+  line-height: 1.4;
+}
+
+.facts-action-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.fact-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #c481ff;
+  background: rgba(196, 129, 255, 0.08);
+  border: 1px solid rgba(196, 129, 255, 0.2);
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fact-action-link:hover {
+  background: rgba(196, 129, 255, 0.18);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.fact-action-link.cyan-link {
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.08);
+  border-color: rgba(0, 240, 255, 0.2);
+}
+
+.fact-action-link.cyan-link:hover {
+  background: rgba(0, 240, 255, 0.18);
+  color: #ffffff;
+}
+
+.fact-action-link.download-link {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(124, 58, 237, 0.4));
+  border-color: rgba(196, 129, 255, 0.35);
+}
+
+.fact-action-link.download-link:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.6), rgba(124, 58, 237, 0.6));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   QR OFFICIAL CREDENTIAL MODAL
+   ═══════════════════════════════════════════════════════════ */
+.qr-verification-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(8, 6, 12, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.25s ease forwards;
+}
+
+.qr-verification-modal-card {
+  max-width: 480px;
+  width: 100%;
+  background: #0e0a16;
+  border: 1px solid rgba(194, 164, 255, 0.2);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.12);
+}
+
+.qr-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.qr-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: #00f0ff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.qr-modal-close {
+  background: transparent;
+  border: none;
+  color: #eae5ec;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.qr-modal-close:hover {
+  color: #ffffff;
+}
+
+.qr-details-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 18px 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(194, 164, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.qr-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.qr-detail-label {
+  color: rgba(234, 229, 236, 0.6);
+}
+
+.qr-detail-val {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.qr-detail-val.text-cyan {
+  color: #00f0ff;
+}
+
+.academic-modal-btn.primary {
+  width: 100%;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: 1px solid rgba(196, 129, 255, 0.4);
+  color: #ffffff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.academic-modal-btn.primary:hover {
+  background: linear-gradient(135deg, #9d6fff, #8b5cf6);
+  transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FULL-SCREEN CERTLIGHTBOX VIEWER
+   ═══════════════════════════════════════════════════════════ */
+.cert-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(6, 4, 10, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: modalFadeIn 0.25s ease forwards;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cert-lightbox-container {
+  width: 96vw;
+  max-width: 1280px;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: #0c0914;
+  border: 1px solid rgba(194, 164, 255, 0.18);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba(139, 92, 246, 0.18);
+}
+
+.lightbox-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(194, 164, 255, 0.12);
+  background: rgba(14, 11, 20, 0.95);
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.lightbox-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lightbox-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  color: #00f0ff;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.lightbox-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.lightbox-meta-row {
+  font-size: 11.5px;
+  color: rgba(234, 229, 236, 0.65);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.lightbox-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.lightbox-doc-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid rgba(194, 164, 255, 0.12);
+}
+
+.lightbox-tab {
+  background: transparent;
+  border: none;
+  color: rgba(234, 229, 236, 0.6);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightbox-tab.active {
+  background: rgba(139, 92, 246, 0.35);
+  color: #ffffff;
+}
+
+.lightbox-zoom-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(194, 164, 255, 0.12);
+}
+
+.zoom-btn {
+  background: transparent;
+  border: none;
+  color: #f1edfa;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.zoom-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #00f0ff;
+}
+
+.zoom-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.zoom-indicator {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  color: #c481ff;
+  min-width: 44px;
+  text-align: center;
+}
+
+.lightbox-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(194, 164, 255, 0.18);
+  color: #ffffff;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightbox-close-btn:hover {
+  background: rgba(239, 68, 68, 0.4);
+  border-color: rgba(239, 68, 68, 0.8);
+}
+
+.lightbox-img-viewport {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #151122 0%, #08060c 100%);
+  position: relative;
+  user-select: none;
+}
+
+.lightbox-img-canvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+}
+
+.lightbox-rendered-doc {
+  max-width: 88%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+.lightbox-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-top: 1px solid rgba(194, 164, 255, 0.12);
+  background: rgba(14, 11, 20, 0.95);
+  flex-shrink: 0;
+}
+
+.lightbox-bottom-note {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(234, 229, 236, 0.5);
+}
+
+.lightbox-bottom-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.academic-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.academic-btn.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(194, 164, 255, 0.15);
+  color: #f1edfa;
+}
+
+.academic-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.academic-btn.primary {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: 1px solid rgba(196, 129, 255, 0.4);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+}
+
+.academic-btn.primary:hover {
+  background: linear-gradient(135deg, #9d6fff, #8b5cf6);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+}
+

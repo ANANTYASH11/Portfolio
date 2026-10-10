@@ -12,6 +12,11 @@
   padding: 100px 0px;
 }
 
+.career-container {
+  width: 100%;
+  position: relative;
+}
+
 /* ===== Career Header with Graduation Cap ===== */
 .career-header {
   position: relative;

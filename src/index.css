@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Fredoka:wght@600;700&family=Geist:wght@100..900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@500;600;700;800&family=Unbounded:wght@400;500;600;700;800&display=swap");
 
 :root {
   font-family: "Geist", "Plus Jakarta Sans", sans-serif;
@@ -39,14 +39,17 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #08060c;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #231a38;
   border-radius: 4px;
   border: 1px solid rgba(194, 164, 255, 0.15);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #3e2866;
   box-shadow: 0 0 10px rgba(194, 164, 255, 0.5);
@@ -142,10 +145,11 @@ body {
 .techstack {
   width: 100%;
   position: relative;
-  height: var(--vh);
+  min-height: var(--vh);
+  height: auto;
   margin: auto;
   margin-top: 60px;
-  margin-bottom: -60px;
+  margin-bottom: 40px;
 }
 
 .techstack-header {
@@ -154,9 +158,16 @@ body {
   top: 90px;
   left: 0;
   text-align: center;
-  z-index: 5;
+  z-index: 20;
   pointer-events: none;
 }
+
+.techstack-header button,
+.techstack-header a,
+.techstack-header .vault-trigger-wrapper {
+  pointer-events: auto !important;
+}
+
 
 .techstack-header h2 {
   font-size: 80px;
@@ -182,6 +193,7 @@ body {
 .tech-canvas {
   cursor: grab;
 }
+
 .tech-canvas:active {
   cursor: grabbing;
 }
@@ -211,8 +223,8 @@ body {
   .techstack-header h2 {
     font-size: 42px;
   }
+
   .techstack-subtitle {
     font-size: 12px;
   }
 }
-

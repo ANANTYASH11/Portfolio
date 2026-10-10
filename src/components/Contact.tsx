@@ -36,8 +36,9 @@ const Contact = () => {
     }
 
     setStatus("submitting");
+    const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
     try {
-      const response = await fetch("http://localhost:5001/api/messages", {
+      const response = await fetch(`${API_BASE_URL}/api/messages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,8 +63,9 @@ const Contact = () => {
   const handleAdminLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAdminError("");
+    const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
     try {
-      const response = await fetch("http://localhost:5001/api/messages", {
+      const response = await fetch(`${API_BASE_URL}/api/messages`, {
         headers: {
           "x-admin-passcode": passcode
         }
@@ -81,8 +83,9 @@ const Contact = () => {
   };
 
   const handleDeleteMessage = async (id: string) => {
+    const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
     try {
-      const response = await fetch(`http://localhost:5001/api/messages/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/messages/${id}`, {
         method: "DELETE",
         headers: {
           "x-admin-passcode": passcode

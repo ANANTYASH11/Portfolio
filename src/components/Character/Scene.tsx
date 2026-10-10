@@ -100,9 +100,6 @@ const Scene = () => {
       .then((gltf) => {
         if (!isMounted || !gltf) return;
 
-        // Clear any prior objects to guarantee exactly ONE character in scene
-        scene.clear();
-
         const characterInstance = gltf.scene;
         scene.add(characterInstance);
 

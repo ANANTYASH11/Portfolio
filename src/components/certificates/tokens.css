@@ -1,0 +1,843 @@
+/* ==========================================================================
+   💎 CERTIFICATE COLLECTION — RESTRAINED OBSIDIAN & LAVENDER DESIGN SYSTEM
+   Base: near-black #0b0912, Pack: #110e1a, Violet #8b5cf6, Lavender #c4b5fd,
+   Deep Violet #3b2a6b, Cyan #00f0ff (verified accent only).
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@600;700&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Surfaces */
+  --vault-page-bg: #0b0912;
+  --vault-pack-bg: #110e1a;
+  --vault-surface: #110e1a;
+  --vault-surface-elevated: #181324;
+  --vault-card-bg: #141022;
+  --vault-text-primary: #ffffff;
+  --vault-text-secondary: rgba(255, 255, 255, 0.75);
+  --vault-text-muted: rgba(255, 255, 255, 0.55);
+
+  /* Restrained Accents */
+  --vault-violet: #8b5cf6;
+  --vault-violet-deep: #3b2a6b;
+  --vault-lavender: #c4b5fd;
+  --vault-lavender-80: rgba(196, 181, 253, 0.8);
+  --vault-lavender-70: rgba(196, 181, 253, 0.7);
+  --vault-lavender-40: rgba(196, 181, 253, 0.4);
+  --vault-lavender-25: rgba(196, 181, 253, 0.25);
+  --vault-lavender-18: rgba(139, 92, 246, 0.18);
+  --vault-lavender-10: rgba(196, 181, 253, 0.1);
+  --vault-cyan: #00f0ff;
+  --vault-cyan-70: rgba(0, 240, 255, 0.7);
+  --vault-cyan-20: rgba(0, 240, 255, 0.2);
+
+  /* Geometry & Outlines */
+  --vault-pack-outline: 2px solid var(--vault-lavender-70);
+  --vault-pack-shadow: 6px 6px 0 var(--vault-violet-deep), 0 20px 50px rgba(0, 0, 0, 0.5);
+  --vault-border-hairline: 1px solid rgba(255, 255, 255, 0.12);
+
+  /* Gradients */
+  --vault-grad-crimp: linear-gradient(90deg, #8b5cf6, #c4b5fd);
+  --vault-grad-violet: linear-gradient(135deg, #8b5cf6, #c4b5fd);
+  --vault-grad-text: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+
+  /* Halftone Overlay Pattern (white at 5%) */
+  --halftone-pattern: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
+
+  /* Backward Compatibility Aliases */
+  --candy-base: var(--vault-page-bg);
+  --candy-surface: var(--vault-pack-bg);
+  --candy-surface-elevated: var(--vault-surface-elevated);
+  --candy-white: #ffffff;
+  --candy-lemon: var(--vault-lavender);
+  --candy-pink: var(--vault-violet);
+  --candy-mint: var(--vault-cyan);
+  --candy-sky: var(--vault-lavender);
+  --candy-grape: var(--vault-violet);
+  --candy-font-display: 'Plus Jakarta Sans', 'Bricolage Grotesque', sans-serif;
+  --candy-font-body: 'DM Sans', -apple-system, sans-serif;
+  --candy-font-hand: 'Caveat', cursive, sans-serif;
+  --candy-font-mono: 'DM Mono', monospace;
+  --candy-outline: var(--vault-pack-outline);
+  --candy-radius: 20px;
+  --candy-radius-sm: 12px;
+  --candy-radius-pill: 9999px;
+  --shadow-lemon: 6px 6px 0 var(--vault-violet-deep);
+  --shadow-pink: 6px 6px 0 var(--vault-violet-deep);
+  --shadow-mint: 6px 6px 0 var(--vault-violet-deep);
+  --shadow-sky: 6px 6px 0 var(--vault-violet-deep);
+  --shadow-grape: 6px 6px 0 var(--vault-violet-deep);
+  --shadow-black: 6px 6px 0 rgba(0, 0, 0, 0.85);
+
+  --vault-bg: var(--vault-page-bg);
+  --vault-card-bg: var(--vault-pack-bg);
+  --vault-card-elevated: var(--vault-surface-elevated);
+  --vault-text-title: var(--vault-text-primary);
+  --vault-text-body: var(--vault-text-secondary);
+  --vault-text-label: var(--vault-text-muted);
+  --vault-accent-violet: var(--vault-violet);
+  --vault-accent-lavender: var(--vault-lavender);
+  --vault-font-display: var(--candy-font-display);
+  --vault-font-body: var(--candy-font-body);
+  --vault-font-label: var(--candy-font-mono);
+}
+
+/* ─── Collection Container ─── */
+.cert-collection-root {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cert-flipper-stage {
+  width: 100%;
+  position: relative;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   STEP 1: THE BOOSTER PACK (Closed State)
+   ═════════════════════════════════════════════════════════════════════ */
+.booster-stage-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0 36px 0;
+  perspective: 1200px;
+}
+
+.booster-pack-anchor {
+  position: relative;
+  display: inline-block;
+}
+
+/* Gentle floating bob with slight wobble */
+.pack-idle-float {
+  animation: packFloatBob 4s ease-in-out infinite alternate;
+}
+
+@keyframes packFloatBob {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0.8deg);
+  }
+  100% {
+    transform: translateY(2px) rotate(-0.8deg);
+  }
+}
+
+/* Pack Outer Container with Crimped Zig-Zag Edges */
+.booster-pack-card {
+  position: relative;
+  width: 340px;
+  min-height: 490px;
+  background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.18) 0%, transparent 70%), var(--vault-pack-bg);
+  border: var(--vault-pack-outline);
+  border-radius: var(--candy-radius);
+  box-shadow: var(--vault-pack-shadow);
+  cursor: pointer;
+  overflow: visible;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 22px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  outline: none;
+}
+
+/* Press Squish Scale on mousedown */
+.booster-pack-card:active {
+  transform: scale(0.96, 1.04) !important;
+  box-shadow: 4px 4px 0 var(--vault-violet-deep) !important;
+}
+
+.booster-pack-card:focus-visible {
+  outline: 2px solid var(--vault-lavender);
+  outline-offset: 4px;
+}
+
+/* Halftone Dot Pattern Overlay: white at 5% */
+.booster-pack-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--halftone-pattern);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+
+/* Shimmer Sweep Every 4s */
+.pack-shimmer-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.12) 45%,
+    rgba(196, 181, 253, 0.2) 50%,
+    rgba(255, 255, 255, 0.12) 55%,
+    transparent 65%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  animation: shimmerMove 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Crimped Zig-Zag Top & Bottom Teeth: violet-to-lavender gradient */
+.crimp-edge-top,
+.crimp-edge-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  pointer-events: none;
+  z-index: 6;
+  background: var(--vault-grad-crimp);
+  mask-image: url("data:image/svg+xml,%3Csvg width='24' height='12' viewBox='0 0 24 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 12L6 0L12 12L18 0L24 12H0Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='24' height='12' viewBox='0 0 24 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 12L6 0L12 12L18 0L24 12H0Z' fill='black'/%3E%3C/svg%3E");
+  mask-size: 16px 12px;
+  -webkit-mask-size: 16px 12px;
+  mask-repeat: repeat-x;
+  -webkit-mask-repeat: repeat-x;
+}
+
+.crimp-edge-top {
+  top: -6px;
+}
+
+.crimp-edge-bottom {
+  bottom: -6px;
+  transform: rotate(180deg);
+}
+
+/* Tape Strips: lavender at 25% opacity with 1px lavender 40% border */
+.washi-tape {
+  position: absolute;
+  width: 90px;
+  height: 22px;
+  background: var(--vault-lavender-25);
+  border: 1px solid var(--vault-lavender-40);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  z-index: 8;
+}
+
+.washi-tape-top-left {
+  top: -10px;
+  left: -15px;
+  transform: rotate(-12deg);
+}
+
+.washi-tape-bottom-right {
+  bottom: -10px;
+  right: -15px;
+  transform: rotate(8deg);
+}
+
+/* Teaser Peek Cards Behind Pack: one violet #8b5cf6, one lavender #c4b5fd at 80% */
+.teaser-peek-card {
+  position: absolute;
+  width: 140px;
+  height: 90px;
+  border-radius: var(--candy-radius-sm);
+  padding: 10px;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.teaser-peek-left {
+  top: -30px;
+  left: 20px;
+  background: var(--vault-violet);
+  transform: rotate(-8deg);
+  box-shadow: 4px 4px 0 var(--vault-violet-deep);
+}
+
+.teaser-peek-right {
+  top: -30px;
+  right: 20px;
+  background: var(--vault-lavender-80);
+  transform: rotate(8deg);
+  box-shadow: 4px 4px 0 var(--vault-violet-deep);
+}
+
+/* Sparkles Around Pack on Hover */
+.sparkle-particle {
+  position: absolute;
+  color: var(--vault-lavender);
+  font-size: 16px;
+  pointer-events: none;
+  animation: sparkleTwinkle 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes sparkleTwinkle {
+  0% {
+    transform: scale(0.7) rotate(0deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.2) rotate(35deg);
+    opacity: 0.9;
+  }
+}
+
+/* "ORACLE CERTIFICATION PACK" Pill: violet-tinted fill, 1.5px lavender border, lavender text */
+.pack-label-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  background: var(--vault-lavender-18);
+  color: var(--vault-lavender);
+  font-family: var(--candy-font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--candy-radius-pill);
+  border: 1.5px solid var(--vault-lavender);
+  align-self: center;
+}
+
+/* Big "25+": white, with offset text-shadow in violet #8b5cf6, "+" in lavender */
+.pack-big-num {
+  font-family: var(--candy-font-display);
+  font-size: clamp(4.5rem, 14vw, 6.2rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  text-shadow: 4px 4px 0 var(--vault-violet), 8px 8px 0 rgba(0, 0, 0, 0.9);
+  margin: 12px 0 6px 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pack-subtitle-text {
+  font-family: var(--candy-font-body);
+  font-size: 13.5px;
+  color: var(--vault-text-secondary);
+  text-align: center;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* "verified!" sticker: lavender text on #110e1a, 1.5px cyan border, small cyan sparkle */
+.pack-verified-sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--vault-pack-bg);
+  border: 1.5px solid var(--vault-cyan);
+  color: var(--vault-lavender);
+  font-family: var(--candy-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+}
+
+/* "100% AUTHENTIC BADGES" pill: cyan text and 1.5px cyan border at 70%, dark fill */
+.pack-authentic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(17, 14, 26, 0.9);
+  border: 1.5px solid var(--vault-cyan-70);
+  color: var(--vault-cyan);
+  font-family: var(--candy-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+/* "tap to unwrap ->" note in lavender at 70% */
+.pack-handwritten-note {
+  font-family: var(--candy-font-hand);
+  font-size: 22px;
+  color: var(--vault-lavender-70);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transform: rotate(-3deg);
+  margin-top: 10px;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   STEP 2 & 3: THE STICKER ALBUM (Back Face)
+   ═════════════════════════════════════════════════════════════════════ */
+.sticker-album-container {
+  position: relative;
+  width: 100%;
+  background: var(--vault-pack-bg);
+  border: 2px solid rgba(196, 181, 253, 0.35);
+  border-radius: var(--candy-radius);
+  box-shadow: 6px 6px 0 var(--vault-violet-deep), 0 25px 60px rgba(0, 0, 0, 0.8);
+  padding: 36px 32px 50px 32px;
+  overflow: hidden;
+}
+
+/* Faint Dotted Grid Paper Pattern */
+.album-paper-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+/* Album Header */
+.album-main-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.album-highlight-word {
+  position: relative;
+  display: inline-block;
+  background: var(--vault-grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 4px;
+}
+
+.marker-squiggle-svg {
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 10px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* Game XP Progress Bar: violet-to-lavender gradient, star rider in lavender */
+.album-xp-wrap {
+  margin: 20px 0 24px 0;
+  width: 100%;
+}
+
+.album-xp-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--candy-font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.album-xp-outer-track {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(196, 181, 253, 0.25);
+  border-radius: var(--candy-radius-pill);
+  box-shadow: none;
+  overflow: visible;
+}
+
+.album-xp-fill {
+  position: relative;
+  height: 100%;
+  background: var(--vault-grad-crimp);
+  border-radius: var(--candy-radius-pill);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.album-xp-star-rider {
+  position: absolute;
+  right: -8px;
+  top: -7px;
+  font-size: 20px;
+  color: var(--vault-lavender);
+  filter: drop-shadow(0 0 6px rgba(196, 181, 253, 0.6));
+  animation: starSpin 3.5s linear infinite;
+}
+
+@keyframes starSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Filter Chips (Stickers) */
+.album-filters-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px 0 32px 0;
+}
+
+.sticker-filter-chip {
+  position: relative;
+  padding: 8px 18px;
+  border-radius: var(--candy-radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--candy-font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sticker-filter-chip:hover {
+  transform: translateY(-2px);
+  background: rgba(196, 181, 253, 0.1);
+  color: #ffffff;
+  border-color: rgba(196, 181, 253, 0.35);
+}
+
+.sticker-filter-chip.active {
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  color: #0b0912;
+  border-color: var(--vault-lavender);
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Loose Pasted Sticker Cards Grid */
+.cards-sticker-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Individual Collectible Card */
+.collect-card-wrap {
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.collect-card-wrap:active {
+  cursor: grabbing;
+}
+
+.collect-card-inner {
+  position: relative;
+  background: #141022;
+  border: 1.5px solid rgba(196, 181, 253, 0.22);
+  border-radius: var(--candy-radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 330px;
+  box-shadow: 6px 6px 0 var(--vault-violet-deep), 0 10px 24px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.collect-card-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--halftone-pattern);
+  background-size: 12px 12px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Subtle Lavender Holographic Foil Effect on Legendary Cards */
+.card-rarity-legendary .collect-card-inner {
+  background: linear-gradient(
+    145deg,
+    rgba(28, 20, 44, 0.95) 0%,
+    rgba(17, 14, 26, 0.98) 100%
+  );
+  border-color: rgba(196, 181, 253, 0.35);
+}
+
+.card-rarity-legendary:hover .collect-card-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(196, 181, 253, 0.15) 0%,
+    rgba(139, 92, 246, 0.15) 50%,
+    rgba(0, 240, 255, 0.1) 100%
+  );
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Rarity Badges:
+   LEGENDARY = lavender on violet tint
+   RARE = white 70% on white 8%
+   EPIC = white 55% on white 5%
+*/
+.card-rarity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--candy-radius-pill);
+  font-family: var(--candy-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: none;
+}
+
+.badge-legendary {
+  background: var(--vault-lavender-18);
+  color: var(--vault-lavender);
+  border: 1px solid rgba(196, 181, 253, 0.3);
+}
+
+.badge-rare {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.badge-epic {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Card Number */
+.card-number-label {
+  font-family: var(--candy-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.1em;
+}
+
+/* Card Thumbnail Window: lavender line icon */
+.card-thumb-window {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  border-radius: var(--candy-radius-sm);
+  border: 1px solid rgba(196, 181, 253, 0.18);
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 10px 0;
+  color: var(--vault-lavender);
+}
+
+/* Handwritten Caveat Note on Card */
+.card-caveat-note {
+  font-family: var(--candy-font-hand);
+  font-size: 17px;
+  color: var(--vault-lavender-70);
+  transform: rotate(-3deg);
+  margin-top: 6px;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   STEP 4: CARD DETAIL MODAL
+   ═════════════════════════════════════════════════════════════════════ */
+.detail-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 6, 14, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  padding: 20px;
+}
+
+.detail-card-big {
+  position: relative;
+  width: 440px;
+  max-width: 100%;
+  background: #110e1a;
+  border: 1.5px solid rgba(196, 181, 253, 0.3);
+  border-radius: var(--candy-radius);
+  box-shadow: 6px 6px 0 var(--vault-violet-deep), 0 30px 70px rgba(0, 0, 0, 0.9);
+  padding: 28px;
+  perspective: 1200px;
+}
+
+/* Chunky Hard Shadow Press-in Buttons */
+.chunky-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: #ffffff;
+  border: 1px solid rgba(196, 181, 253, 0.4);
+  border-radius: var(--candy-radius-pill);
+  box-shadow: 4px 4px 0 var(--vault-violet-deep);
+  font-family: var(--candy-font-mono);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.chunky-action-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--vault-violet-deep);
+}
+
+.chunky-action-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--vault-violet-deep);
+}
+
+.chunky-action-btn-secondary {
+  background: rgba(196, 181, 253, 0.1);
+  color: #f1edfa;
+  border: 1px solid rgba(196, 181, 253, 0.25);
+  box-shadow: 4px 4px 0 var(--vault-violet-deep);
+}
+
+.chunky-action-btn-secondary:hover {
+  box-shadow: 6px 6px 0 var(--vault-violet-deep);
+  background: rgba(196, 181, 253, 0.18);
+  color: #ffffff;
+}
+
+.chunky-action-btn-secondary:active {
+  box-shadow: 2px 2px 0 var(--vault-violet-deep);
+}
+
+/* Skill Bars Filling */
+.skill-bar-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(196, 181, 253, 0.2);
+  border-radius: var(--candy-radius-pill);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: var(--vault-grad-crimp);
+  border-radius: var(--candy-radius-pill);
+}
+
+/* Toast Notification "NEW BADGES UNLOCKED!" */
+.badge-toast-popup {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #110e1a;
+  color: var(--vault-lavender);
+  border: 1.5px solid var(--vault-lavender);
+  border-radius: var(--candy-radius-pill);
+  padding: 10px 24px;
+  font-family: var(--candy-font-display);
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 var(--vault-violet-deep), 0 10px 30px rgba(0, 0, 0, 0.8);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: toastBounceIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastBounceIn {
+  0% {
+    transform: translate(-50%, 60px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Reduced Motion Overrides */
+@media (prefers-reduced-motion: reduce) {
+  .pack-idle-float,
+  .pack-shimmer-sweep,
+  .sparkle-particle,
+  .album-xp-star-rider {
+    animation: none !important;
+  }
+  .cards-sticker-grid {
+    transform: none !important;
+  }
+  .collect-card-inner {
+    transform: none !important;
+  }
+  .booster-pack-card {
+    transition: none !important;
+  }
+}
+
+/* Mobile & Touch */
+@media (max-width: 768px) {
+  .cards-sticker-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px;
+  }
+  .collect-card-inner {
+    transform: none !important;
+    min-height: 280px;
+  }
+  .sticker-album-container {
+    padding: 24px 16px;
+  }
+}
