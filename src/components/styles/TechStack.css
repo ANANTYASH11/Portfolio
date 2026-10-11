@@ -146,11 +146,19 @@
 }
 
 .tech-collapsible-wrapper.open {
-  max-height: 3500px;
+  max-height: 8000px;
   opacity: 1;
   overflow: visible;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+/* ─── Tech Vault Embedded Stage ─── */
+.tech-vault-embedded-stage {
+  width: 100%;
+  max-width: 1280px;
+  margin: 16px auto 40px auto;
+  position: relative;
 }
 
 /* ─── Cards Stage Container ─── */

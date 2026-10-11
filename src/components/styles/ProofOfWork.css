@@ -1,0 +1,1309 @@
+/* ==========================================================================
+   PROOF OF WORK — Upgraded Design System
+   Surfaces: #0b0912 / #110e1a / #181324
+   Borders: 1px hairline at white 8% (rgba(255, 255, 255, 0.08))
+   Accent: #8b5cf6 to #c4b5fd (Violet to Lavender ONLY)
+   Live dot: #00f0ff (Cyan ONLY for genuinely live state)
+   ========================================================================== */
+
+/* ─── Section Shell ─── */
+.proof-section {
+  position: relative;
+  width: 100%;
+  background-color: #0b0912;
+  color: #ffffff;
+  padding-top: calc(64px + 24px); /* navbar height + 24px */
+  scroll-margin-top: calc(64px + 24px);
+  padding-bottom: 120px;          /* clears fixed RESUME button */
+  box-sizing: border-box;
+}
+
+.proof-container {
+  width: var(--cWidth, 90%);
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* ─── Header Block ─── */
+.proof-header-block {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.proof-eyebrow {
+  font-size: 11px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  opacity: 0.45;
+  margin-bottom: 8px;
+}
+
+.proof-heading {
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+}
+
+.proof-heading em,
+.proof-heading-highlight {
+  font-style: normal;
+  background: linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.proof-subtitle {
+  font-family: var(--font-subheading, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 18px 0;
+}
+
+/* ─── Status Pill Bar ─── */
+.proof-meta-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #110e1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 5px 14px;
+}
+
+/* Live: Pulsing cyan dot */
+.proof-live-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+  display: inline-block;
+  animation: proof-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes proof-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 6px rgba(0, 240, 255, 0.8);
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.6;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  }
+}
+
+/* Snapshot: Hollow white 40% dot (Cyan NEVER appears on stale data) */
+.proof-snapshot-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  background-color: transparent;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.proof-meta-text {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.02em;
+}
+
+.proof-retry-btn {
+  background: none;
+  border: none;
+  padding: 0 0 0 4px;
+  color: #c4b5fd;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease;
+  outline: none;
+}
+
+.proof-retry-btn:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.proof-retry-icon {
+  font-size: 11px;
+}
+
+.proof-retry-icon.is-spinning {
+  animation: proof-spin 1s linear infinite;
+}
+
+@keyframes proof-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Tabs Controls ─── */
+.proof-tabs-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.proof-tabs-bar {
+  position: relative;
+  display: inline-flex;
+  background: #110e1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 4px;
+  z-index: 20;
+}
+
+.proof-tab-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 22px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 2;
+  outline: none;
+}
+
+.proof-tab-btn:hover {
+  color: #ffffff;
+}
+
+.proof-tab-btn.is-active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.proof-sliding-underline {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.28), rgba(196, 181, 253, 0.18));
+  border: 1px solid rgba(196, 181, 253, 0.35);
+  border-radius: 9999px;
+  transition: left 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── UPGRADE B1: Headline Stat Band ─── */
+.proof-stat-band {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #110e1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+@media (max-width: 820px) {
+  .proof-stat-band {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.proof-stat-band-cell {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proof-stat-band-cell:last-child {
+  border-right: none;
+}
+
+@media (max-width: 820px) {
+  .proof-stat-band-cell:nth-child(2) {
+    border-right: none;
+  }
+  .proof-stat-band-cell:nth-child(1),
+  .proof-stat-band-cell:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+.proof-stat-band-label {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  opacity: 0.45;
+  white-space: nowrap;
+}
+
+.proof-stat-band-value {
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+.stat-band-unit {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ─── UPGRADE B5: Rhythm Strip (52-week stacked activity) ─── */
+.proof-rhythm-wrapper {
+  background: #110e1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+
+.proof-rhythm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.proof-rhythm-caption {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.proof-rhythm-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.rhythm-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rhythm-legend-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.rhythm-legend-dot.gh-dot {
+  background-color: #8b5cf6;
+}
+
+.rhythm-legend-dot.lc-dot {
+  background-color: #c4b5fd;
+}
+
+.proof-rhythm-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-top: 18px; /* space for best week badge */
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(196, 181, 253, 0.2) transparent;
+}
+
+.proof-rhythm-scroll::-webkit-scrollbar {
+  height: 3px;
+}
+
+.proof-rhythm-scroll::-webkit-scrollbar-thumb {
+  background: rgba(196, 181, 253, 0.2);
+  border-radius: 4px;
+}
+
+.proof-rhythm-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 56px;
+  min-width: max-content;
+}
+
+.proof-rhythm-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 12px;
+  height: 56px;
+  cursor: pointer;
+  outline: none;
+}
+
+.proof-rhythm-col:hover .proof-rhythm-bar-stack {
+  filter: brightness(1.25);
+}
+
+.proof-rhythm-best-badge {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 8.5px;
+  white-space: nowrap;
+  background: rgba(139, 92, 246, 0.25);
+  border: 1px solid rgba(196, 181, 253, 0.4);
+  color: #c4b5fd;
+  border-radius: 4px;
+  padding: 1px 4px;
+  pointer-events: none;
+}
+
+.proof-rhythm-bar-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  transition: filter 0.15s ease;
+}
+
+.proof-rhythm-seg-lc {
+  width: 100%;
+  background-color: #c4b5fd; /* Lavender for LeetCode */
+}
+
+.proof-rhythm-seg-gh {
+  width: 100%;
+  background-color: #8b5cf6; /* Violet for GitHub */
+}
+
+/* ─── Cards Container ─── */
+.proof-cards-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.proof-cards-container.tab-view-both {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .proof-cards-container.tab-view-both {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ─── UPGRADE B2: Less Boxy Card Shell ─── */
+.proof-card {
+  background: #110e1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: relative;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.proof-card:hover {
+  border-color: rgba(196, 181, 253, 0.2);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+.proof-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proof-card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.proof-card-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #181324;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c4b5fd;
+  font-size: 20px;
+}
+
+.proof-card-title {
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.proof-card-handle {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 2px 0 0 0;
+}
+
+.proof-card-badge-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11px;
+  color: rgba(196, 181, 253, 0.8);
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 6px;
+  padding: 5px 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.proof-card-badge-link:hover {
+  background: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+  border-color: rgba(196, 181, 253, 0.5);
+}
+
+/* ─── Less Boxy Inner Stat Band with Hairline Dividers ─── */
+.proof-card-stat-band {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.proof-card-stat-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.proof-card-stat-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 16px;
+}
+
+.proof-card-stat-divider-h {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 4px 0;
+}
+
+/* Bug A5 Fix: white-space: nowrap, fixed height so values share one baseline */
+.proof-card-stat-label {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+  height: 16px;
+  line-height: 16px;
+  display: block;
+}
+
+.proof-card-stat-val {
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.proof-card-stat-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65); /* quieter caption at 65% */
+}
+
+/* ─── Top Languages Bar ─── */
+.proof-lang-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proof-lang-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.proof-lang-title {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.proof-lang-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.proof-lang-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.proof-lang-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.proof-lang-name {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.proof-lang-pct {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.proof-lang-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.proof-lang-segment {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+/* ─── Heatmap Layout (12px cells, 3px gaps, computed month x) ─── */
+.proof-heatmap-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.proof-heatmap-viewport-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* Left-edge fade mask only shown while scrolled */
+.proof-heatmap-fade-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 28px; /* right after sticky day labels */
+  width: 24px;
+  background: linear-gradient(to right, #110e1a, transparent);
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.proof-heatmap-fade-left.is-visible {
+  opacity: 1;
+}
+
+.proof-heatmap-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+  scroll-padding-right: 24px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(196, 181, 253, 0.2) transparent;
+}
+
+.proof-heatmap-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.proof-heatmap-scroll::-webkit-scrollbar-thumb {
+  background: rgba(196, 181, 253, 0.2);
+  border-radius: 4px;
+}
+
+.proof-heatmap-layout {
+  display: inline-flex;
+  gap: 8px;
+  min-width: max-content;
+}
+
+/* Sticky Mon/Wed/Fri labels on left with background and padding */
+.proof-day-labels {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  background: #110e1a;
+  display: grid;
+  grid-template-rows: repeat(7, 12px);
+  gap: 3px;
+  padding-top: 18px;
+  padding-right: 6px;
+}
+
+.proof-day-label {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 9.5px;
+  line-height: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+  width: 24px;
+}
+
+.proof-grid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Month labels row aligned with 12px columns and 3px gaps */
+.proof-month-row {
+  display: grid;
+  grid-template-columns: repeat(53, 12px);
+  gap: 3px;
+  height: 14px;
+}
+
+.proof-month-label {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 9.5px;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+
+.proof-weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(53, 12px);
+  gap: 3px;
+}
+
+.proof-week-col {
+  display: grid;
+  grid-template-rows: repeat(7, 12px);
+  gap: 3px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Column hover: dims other columns to 50% */
+.proof-weeks-grid.is-hovering .proof-week-col {
+  opacity: 0.5;
+}
+
+.proof-weeks-grid.is-hovering .proof-week-col.is-active-col {
+  opacity: 1;
+  transform: scaleY(1.03);
+}
+
+/* 12px cells, 3px gaps, 3px-rounded */
+.proof-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.proof-cell:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 1px;
+}
+
+.proof-cell:hover {
+  transform: scale(1.3);
+  z-index: 8;
+  filter: drop-shadow(0 0 4px #c4b5fd);
+}
+
+/* 5 Clearly Separated Intensity Steps */
+.proof-cell.level-0,
+.proof-legend-cell.level-0 {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.proof-cell.level-1,
+.proof-legend-cell.level-1 {
+  background-color: rgba(139, 92, 246, 0.28);
+}
+
+.proof-cell.level-2,
+.proof-legend-cell.level-2 {
+  background-color: rgba(139, 92, 246, 0.58);
+}
+
+.proof-cell.level-3,
+.proof-legend-cell.level-3 {
+  background-color: #8b5cf6;
+}
+
+.proof-cell.level-4,
+.proof-legend-cell.level-4 {
+  background-color: #c4b5fd;
+}
+
+.proof-heatmap-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2px;
+}
+
+.proof-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.proof-legend-text {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.proof-legend-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+/* Tooltip */
+.proof-tooltip {
+  background: #181324;
+  border: 1px solid rgba(196, 181, 253, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11.5px;
+  padding: 6px 11px;
+  white-space: nowrap;
+}
+
+/* ─── UPGRADE B4: Segmented Donut Ring Chart ─── */
+/* ─── UPGRADE B4: Segmented Donut Ring Chart & Balanced LeetCode Section ─── */
+.proof-lc-top-section {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .proof-lc-top-section {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.proof-ring-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .proof-ring-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.proof-ring-svg-wrap {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.proof-ring-segment {
+  cursor: pointer;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.proof-ring-segment.is-dimmed {
+  opacity: 0.35;
+}
+
+.proof-ring-segment.is-highlighted {
+  filter: drop-shadow(0 0 8px rgba(196, 181, 253, 0.6));
+}
+
+.proof-ring-center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.proof-ring-total-num {
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+}
+
+.proof-ring-sub-count {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 1px;
+}
+
+.proof-ring-total-label {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 2px;
+}
+
+.proof-ring-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 130px;
+  flex: 1;
+}
+
+.proof-diff-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.proof-diff-row.is-dimmed {
+  opacity: 0.35;
+}
+
+.proof-diff-row.is-highlighted {
+  opacity: 1;
+}
+
+.proof-diff-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11px;
+}
+
+.proof-diff-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.proof-diff-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dot-easy { background-color: #c4b5fd; }
+.dot-medium { background-color: #8b5cf6; }
+.dot-hard { background-color: rgba(255, 255, 255, 0.7); }
+
+.proof-diff-val {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.proof-diff-val strong {
+  color: #ffffff;
+}
+
+.diff-slash {
+  opacity: 0.4;
+}
+
+.proof-diff-track {
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.proof-diff-bar {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.6s ease;
+}
+
+.fill-easy { background-color: #c4b5fd; }
+.fill-medium { background-color: #8b5cf6; }
+.fill-hard { background-color: rgba(255, 255, 255, 0.7); }
+
+.proof-lc-stats-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.proof-lc-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.proof-lc-heatmap-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.proof-lc-heatmap-title {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.proof-lc-heatmap-sub {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ─── UPGRADE B6: Deep Dive Sections for GitHub & LeetCode Tabs ─── */
+.proof-pinned-section,
+.proof-lc-depth-block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proof-pinned-header,
+.proof-depth-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.proof-pinned-icon,
+.proof-depth-icon {
+  color: #c4b5fd;
+  font-size: 13px;
+}
+
+.proof-pinned-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.proof-pinned-card {
+  background: #181324;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.proof-pinned-card:hover {
+  border-color: rgba(196, 181, 253, 0.35);
+  transform: translateY(-2px);
+}
+
+.proof-pinned-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.proof-pinned-name {
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.proof-pinned-arrow {
+  font-size: 12px;
+  color: #c4b5fd;
+  opacity: 0.6;
+}
+
+.proof-pinned-desc {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.proof-pinned-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: auto;
+}
+
+.proof-pinned-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.proof-pinned-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.proof-star-icon {
+  font-size: 11px;
+  color: #c4b5fd;
+}
+
+/* LeetCode Topics & Recent Submissions */
+.proof-topics-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.proof-topic-chip {
+  background: #181324;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 11px;
+}
+
+.proof-topic-name {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.proof-topic-count {
+  background: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+  padding: 1px 5px;
+  border-radius: 9999px;
+  font-size: 9.5px;
+}
+
+.proof-recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proof-recent-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #181324;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.proof-recent-row:hover {
+  border-color: rgba(196, 181, 253, 0.3);
+  transform: translateX(2px);
+}
+
+.proof-recent-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.proof-recent-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #c4b5fd;
+}
+
+.proof-recent-title {
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: 12.5px;
+  color: #ffffff;
+}
+
+.proof-recent-time {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ─── Card Footer ─── */
+.proof-card-footer {
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.proof-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 12.5px;
+  color: rgba(196, 181, 253, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.proof-footer-link:hover {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.proof-arrow {
+  color: #c4b5fd;
+  font-size: 14px;
+}
+
+/* ─── Loading Skeleton Shimmer ─── */
+.proof-skeleton-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 28px;
+  margin-bottom: 24px;
+}
+
+.proof-skeleton-card {
+  height: 480px;
+  border-radius: 16px;
+  background: #110e1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proof-skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #110e1a 0%,
+    #181324 50%,
+    #110e1a 100%
+  );
+  background-size: 200% 100%;
+  animation: proof-shimmer 2.2s infinite ease-in-out;
+}
+
+@keyframes proof-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .proof-live-pulse-dot {
+    animation: none;
+  }
+  .proof-skeleton-shimmer {
+    animation: none;
+  }
+  .proof-cell,
+  .proof-week-col,
+  .proof-sliding-underline,
+  .proof-card,
+  .proof-rhythm-bar-stack {
+    transition: none !important;
+  }
+}

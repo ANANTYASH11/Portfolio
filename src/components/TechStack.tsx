@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { useRef, useMemo, useState, useEffect } from "react";
+import { useRef, useMemo, useState, useEffect, useCallback } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import {
@@ -9,18 +9,8 @@ import {
   CylinderCollider,
   RapierRigidBody,
 } from "@react-three/rapier";
-import {
-  LuBinary,
-  LuCpu,
-  LuNetwork,
-  LuRadio,
-  LuShieldCheck,
-  LuCloud,
-} from "react-icons/lu";
 import { FiChevronDown, FiCpu as FiCpuIcon } from "react-icons/fi";
-import TechCollection from "./tech/TechCollection";
-import TechCard, { TechCardData } from "./tech/TechCard";
-import { getDomainClusters } from "./tech/techData";
+import TechVaultBack from "./tech/TechVaultBack";
 import "./styles/TechStack.css";
 import "./certificates/tokens.css";
 
@@ -137,20 +127,10 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   );
 }
 
-const domainIcons: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
-  languages: LuBinary,
-  frontend: LuCpu,
-  backend: LuNetwork,
-  databases: LuRadio,
-  systems: LuShieldCheck,
-  ai_cloud: LuCloud,
-};
-
 const TechStack = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [isDetailedOpen, setIsDetailedOpen] = useState(true);
-  const [hoveredTech, setHoveredTech] = useState<string | null>(null);
+  const [isDetailedOpen, setIsDetailedOpen] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -180,20 +160,34 @@ const TechStack = () => {
     );
   }, []);
 
-  const techCardsData: TechCardData[] = useMemo(() => {
-    const clusters = getDomainClusters();
-    return clusters.map((cluster) => ({
-      id: cluster.id,
-      title: cluster.name,
-      icon: domainIcons[cluster.id] || LuCpu,
-      items: cluster.items.map((item) => ({
-        name: item.name,
-        icon: item.icon,
-        color: item.brandColor,
-        tag: item.tag,
-      })),
-    }));
+  const handleToggleDetailed = useCallback(() => {
+    setIsDetailedOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setTimeout(() => {
+          document
+            .getElementById("detailed-tech-stack")
+            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+      return next;
+    });
   }, []);
+
+  // Keyboard Escape listener to close details
+  useEffect(() => {
+    if (!isDetailedOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setIsDetailedOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isDetailedOpen]);
 
   return (
     <div className="techstack" ref={containerRef}>
@@ -239,19 +233,21 @@ const TechStack = () => {
         />
       </Canvas>
 
-      {/* ─── 6 Glass Cards Detailed Tech Stack Section ─── */}
+      {/* ─── Detailed Tech Stack (Tech Vault Honeycomb Album) ─── */}
       <div className="tech-toggle-bar" id="detailed-tech-stack">
         <button
           type="button"
           className={`tech-enchanted-toggle ${isDetailedOpen ? "open" : ""}`}
-          onClick={() => setIsDetailedOpen((prev) => !prev)}
+          onClick={handleToggleDetailed}
           data-cursor="disable"
+          aria-expanded={isDetailedOpen}
+          aria-controls="tech-vault-portal"
         >
           <span className="toggle-chip-icon">
             <FiCpuIcon />
           </span>
           <span className="toggle-btn-label">
-            {isDetailedOpen ? "Hide Detailed Tech Stack" : "Show Detailed Tech Stack"}
+            {isDetailedOpen ? "Hide Details of Tech Stack" : "View Details of Tech Stack"}
           </span>
           <FiChevronDown
             className={`toggle-chevron-icon ${isDetailedOpen ? "rotated" : ""}`}
@@ -264,32 +260,12 @@ const TechStack = () => {
           isDetailedOpen ? "open" : "collapsed"
         }`}
       >
-        <div className="tech-cards-stage-container">
-          <div className="tech-cards-enchanted-grid">
-            {techCardsData.map((card) => (
-              <TechCard
-                key={card.id}
-                card={card}
-                hoveredTech={hoveredTech}
-                onHoverTech={setHoveredTech}
-              />
-            ))}
-          </div>
+        <div className="tech-vault-embedded-stage">
+          <TechVaultBack
+            isOpen={isDetailedOpen}
+            onClose={() => setIsDetailedOpen(false)}
+          />
         </div>
-      </div>
-
-      {/* 🍬 Collectible Tech Vault */}
-      <div style={{ marginTop: "80px", display: "flex", flexDirection: "column", alignItems: "center", width: "100%", scrollMarginTop: "96px", paddingBottom: "80px" }}>
-        <div className="vault-section-header">
-          <h3 className="vault-section-title">
-            Tech <span className="vault-section-highlight">Vault</span>
-          </h3>
-          <p className="vault-section-subtitle">
-            41 core engineering technologies across 6 production domains.
-          </p>
-        </div>
-
-        <TechCollection />
       </div>
     </div>
   );

@@ -28,4 +28,5 @@ backup/
 .env
 .vercel
 .env*
+!.env.example
 github-contribution-booster/

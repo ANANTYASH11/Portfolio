@@ -13,6 +13,7 @@ import WhatsAppChatbot from "./WhatsAppChatbot";
 import setSplitText from "./utils/splitText";
 
 const TechStack = lazy(() => import("./TechStack"));
+const ProofOfWork = lazy(() => import("./activity/ProofOfWork"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
@@ -57,6 +58,9 @@ const MainContainer = ({ children }: PropsWithChildren) => {
                 <TechStack />
               </Suspense>
             )}
+            <Suspense fallback={null}>
+              <ProofOfWork />
+            </Suspense>
             <Contact />
           </div>
         </div>

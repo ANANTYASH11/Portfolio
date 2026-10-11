@@ -204,10 +204,17 @@ export const HexTile: React.FC<HexTileProps> = ({
             </span>
           )}
 
-          {/* Thin 1.5px-stroke Lavender Icon */}
+          {/* Vibrant Official Brand Color Logo Icon */}
           {IconComponent && (
-            <div className="hex-icon-wrap" aria-hidden="true">
-              <IconComponent size={24} color="var(--vault-accent-lavender)" strokeWidth={1.5} />
+            <div
+              className="hex-icon-wrap"
+              style={{
+                color: accentColor,
+                filter: `drop-shadow(0 2px 8px ${accentColor}55)`,
+              }}
+              aria-hidden="true"
+            >
+              <IconComponent size={28} color={accentColor} />
             </div>
           )}
 
@@ -259,7 +266,8 @@ export const HexTile: React.FC<HexTileProps> = ({
                       className="hex-skill-fill"
                       style={{
                         width: isFlipped ? `${s.level}%` : "0%",
-                        backgroundColor: "var(--vault-accent-lavender)",
+                        backgroundColor: accentColor,
+                        boxShadow: `0 0 8px ${accentColor}88`,
                         transition: `width 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + idx * 0.08}s`,
                       }}
                     />

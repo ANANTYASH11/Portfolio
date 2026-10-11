@@ -144,8 +144,8 @@ export const TechCollectCard: React.FC<TechCollectCardProps> = ({
       {/* Card Icon Thumbnail Box */}
       <div className="collect-card-thumb">
         <div className="collect-thumb-placeholder">
-          <div className="collect-thumb-icon">
-            <IconComponent style={{ fontSize: "30px" }} />
+          <div className="collect-thumb-icon" style={{ color: card.brandColor || "#c4b5fd" }}>
+            <IconComponent style={{ fontSize: "30px", color: card.brandColor || "#c4b5fd" }} />
           </div>
           <span className="collect-thumb-tag">
             {card.tag || card.experience}

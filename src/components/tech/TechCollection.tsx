@@ -11,6 +11,14 @@ export const TechCollection: React.FC = () => {
   const stageRef = useRef<HTMLDivElement>(null);
   const shockwaveRef = useRef<HTMLDivElement>(null);
   const triggerButtonRef = useRef<HTMLDivElement>(null);
+  const ctxRef = useRef<gsap.Context | null>(null);
+
+  useEffect(() => {
+    ctxRef.current = gsap.context(() => {});
+    return () => {
+      ctxRef.current?.revert();
+    };
+  }, []);
 
   const handleOpenVault = useCallback((coords: { x: number; y: number }) => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

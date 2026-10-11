@@ -142,7 +142,7 @@ export const TechCardDetail: React.FC<TechCardDetailProps> = ({
             gap: "8px",
           }}
         >
-          <div style={{ color: "var(--vault-accent-lavender)" }}>
+          <div style={{ color: card.brandColor || "#c4b5fd", filter: `drop-shadow(0 2px 12px ${card.brandColor || "#c4b5fd"}66)` }}>
             <IconComponent style={{ fontSize: "44px" }} />
           </div>
           <span

@@ -4,6 +4,8 @@ import { FiArrowRight, FiCpu } from "react-icons/fi";
 import { SiTypescript, SiReact, SiDocker } from "react-icons/si";
 import { collectionAudio } from "../certificates/audio";
 import { VAULT_CONFIG } from "./techData";
+import "../certificates/tokens.css";
+import "../styles/vault.css";
 
 interface TechVaultFrontProps {
   isOpen: boolean;
@@ -25,16 +27,19 @@ export const TechVaultFront: React.FC<TechVaultFrontProps> = ({
   useEffect(() => {
     const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reducedMotion && !isTouch && cardRef.current) {
-      magXTo.current = gsap.quickTo(cardRef.current, "x", {
-        duration: 0.35,
-        ease: "power2.out",
-      });
-      magYTo.current = gsap.quickTo(cardRef.current, "y", {
-        duration: 0.35,
-        ease: "power2.out",
-      });
-    }
+    const ctx = gsap.context(() => {
+      if (!reducedMotion && !isTouch && cardRef.current) {
+        magXTo.current = gsap.quickTo(cardRef.current, "x", {
+          duration: 0.35,
+          ease: "power2.out",
+        });
+        magYTo.current = gsap.quickTo(cardRef.current, "y", {
+          duration: 0.35,
+          ease: "power2.out",
+        });
+      }
+    }, cardRef);
+    return () => ctx.revert();
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {

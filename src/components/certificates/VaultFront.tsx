@@ -5,6 +5,8 @@ import { LuShieldCheck } from "react-icons/lu";
 import { MdSchool } from "react-icons/md";
 import { VAULT_CONFIG, OracleGlyph } from "./certificates";
 import { collectionAudio } from "./audio";
+import "./tokens.css";
+import "../styles/vault.css";
 
 interface VaultFrontProps {
   isOpen: boolean;
@@ -23,10 +25,13 @@ export const VaultFront: React.FC<VaultFrontProps> = ({ isOpen, onOpenVault }) =
   useEffect(() => {
     const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reducedMotion && !isTouch && cardRef.current) {
-      magXTo.current = gsap.quickTo(cardRef.current, "x", { duration: 0.35, ease: "power2.out" });
-      magYTo.current = gsap.quickTo(cardRef.current, "y", { duration: 0.35, ease: "power2.out" });
-    }
+    const ctx = gsap.context(() => {
+      if (!reducedMotion && !isTouch && cardRef.current) {
+        magXTo.current = gsap.quickTo(cardRef.current, "x", { duration: 0.35, ease: "power2.out" });
+        magYTo.current = gsap.quickTo(cardRef.current, "y", { duration: 0.35, ease: "power2.out" });
+      }
+    }, cardRef);
+    return () => ctx.revert();
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {

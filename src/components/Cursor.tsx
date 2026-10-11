@@ -32,31 +32,44 @@ const Cursor = () => {
 
     animId = requestAnimationFrame(loop);
 
-    const elements = document.querySelectorAll("[data-cursor]");
-    elements.forEach((item) => {
-      const element = item as HTMLElement;
-      element.addEventListener("mouseover", (e: MouseEvent) => {
-        const target = e.currentTarget as HTMLElement;
-        const rect = target.getBoundingClientRect();
+    const handleDocMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
 
-        if (element.dataset.cursor === "icons") {
-          cursor.classList.add("cursor-icons");
-          cursor.style.transform = `translate3d(${rect.left}px, ${rect.top}px, 0)`;
-          cursor.style.setProperty("--cursorH", `${rect.height}px`);
-          hover = true;
+      const interactive = target.closest("a, button, [role='tab'], input, select, textarea, [data-cursor='pointer']");
+      if (interactive) {
+        cursor.classList.add("cursor-ring-active");
+      } else {
+        cursor.classList.remove("cursor-ring-active");
+      }
+
+      const disabledTarget = target.closest("[data-cursor='disable']");
+      if (disabledTarget) {
+        cursor.classList.add("cursor-disable");
+      } else {
+        cursor.classList.remove("cursor-disable");
+      }
+
+      const iconsTarget = target.closest("[data-cursor='icons']") as HTMLElement | null;
+      if (iconsTarget) {
+        const rect = iconsTarget.getBoundingClientRect();
+        cursor.classList.add("cursor-icons");
+        cursor.style.transform = `translate3d(${rect.left}px, ${rect.top}px, 0)`;
+        cursor.style.setProperty("--cursorH", `${rect.height}px`);
+        hover = true;
+      } else {
+        if (hover) {
+          cursor.classList.remove("cursor-icons");
+          hover = false;
         }
-        if (element.dataset.cursor === "disable") {
-          cursor.classList.add("cursor-disable");
-        }
-      });
-      element.addEventListener("mouseout", () => {
-        cursor.classList.remove("cursor-disable", "cursor-icons");
-        hover = false;
-      });
-    });
+      }
+    };
+
+    document.addEventListener("mouseover", handleDocMouseOver);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseover", handleDocMouseOver);
       cancelAnimationFrame(animId);
     };
   }, []);

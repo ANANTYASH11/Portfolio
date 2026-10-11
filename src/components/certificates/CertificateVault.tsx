@@ -18,6 +18,14 @@ export const CertificateVault: React.FC = () => {
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const ctxRef = useRef<gsap.Context | null>(null);
+
+  useEffect(() => {
+    ctxRef.current = gsap.context(() => {});
+    return () => {
+      ctxRef.current?.revert();
+    };
+  }, []);
 
   const isReducedMotion =
     typeof window !== "undefined" &&

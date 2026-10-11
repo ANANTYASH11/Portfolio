@@ -1,0 +1,634 @@
+/* ==========================================================================
+   CASE STUDY EXPANDED VIEW — RESTRAINED OBSIDIAN & LAVENDER DESIGN SYSTEM
+   Base: #0b0912 / #110e1a / #181324, Hairline borders: rgba(255, 255, 255, 0.08)
+   Accent: #8b5cf6 to #c4b5fd, Cyan: #00f0ff (verified/live only)
+   ========================================================================== */
+
+.case-study-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 9, 18, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  opacity: 0;
+}
+
+.case-study-panel {
+  position: relative;
+  width: 100%;
+  max-width: 1060px;
+  max-height: 88vh;
+  background: #110e1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85), 0 0 35px rgba(139, 92, 246, 0.12);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 36px 42px 48px 42px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  color: #ffffff;
+  outline: none;
+}
+
+/* Custom Scrollbar */
+.case-study-panel::-webkit-scrollbar {
+  width: 7px;
+}
+.case-study-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.case-study-panel::-webkit-scrollbar-thumb {
+  background: rgba(196, 181, 253, 0.25);
+  border-radius: 4px;
+}
+.case-study-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* ─── Top Header Navigation ─── */
+.case-study-top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.case-study-number-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #c4b5fd;
+  text-transform: uppercase;
+}
+
+.case-study-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+}
+
+.case-study-close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: #c4b5fd;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.case-study-close-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(196, 181, 253, 0.4);
+  color: #ffffff;
+  transform: scale(1.02);
+}
+
+.case-study-close-btn:focus-visible {
+  box-shadow: 0 0 0 2px #00f0ff;
+}
+
+.esc-pill {
+  font-size: 9.5px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ─── Hero Header & Metadata ─── */
+.case-study-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-study-category {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+  margin: 0;
+}
+
+.case-study-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 30%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.case-study-summary {
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  max-width: 900px;
+}
+
+/* Metadata Row (Role, Timeline) */
+.case-study-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+}
+
+.case-study-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.case-study-meta-label {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+.case-study-meta-value {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ─── Stack Chips (Reusing Tech Stack chip style) ─── */
+.case-study-chips-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.case-study-section-label {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+  font-weight: 600;
+}
+
+.case-study-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.case-study-chip {
+  background: rgba(194, 164, 255, 0.08);
+  border: 1px solid rgba(194, 164, 255, 0.2);
+  color: #c4b5fd;
+  font-family: "DM Mono", monospace;
+  font-size: 11.5px;
+  padding: 5px 13px;
+  border-radius: 9999px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.case-study-chip:hover {
+  background: rgba(194, 164, 255, 0.18);
+  border-color: rgba(196, 181, 253, 0.45);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ─── Metrics Row (Resume Verified Numbers Only) ─── */
+.case-study-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.case-study-metric-card {
+  padding: 20px 22px;
+  background: #181324;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.25s ease;
+}
+
+.case-study-metric-card:hover {
+  border-color: rgba(196, 181, 253, 0.3);
+}
+
+.case-study-metric-value {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, #ffffff 40%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.case-study-metric-label {
+  font-family: "DM Mono", monospace;
+  font-size: 11.5px;
+  color: #c4b5fd;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.case-study-metric-detail {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ─── Problem / Approach / Result Blocks ─── */
+.case-study-blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  width: 100%;
+}
+
+.case-study-block-card {
+  padding: 24px;
+  background: #141022;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.case-study-block-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(196, 181, 253, 0.25);
+}
+
+.case-study-block-badge {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #8b5cf6;
+  text-transform: uppercase;
+}
+
+.case-study-block-heading {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.case-study-block-body {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* ─── Architecture Diagram ─── */
+.case-study-diagram-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-study-diagram-box {
+  width: 100%;
+  background: #141022;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.case-study-diagram-svg {
+  width: 100%;
+  max-width: 820px;
+  height: auto;
+  display: block;
+}
+
+/* ─── Demo Area ─── */
+.case-study-demo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-study-demo-stage {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  background: #141022;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-study-demo-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  filter: brightness(0.65);
+  transition: transform 0.5s ease;
+}
+
+.case-study-demo-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(17, 14, 26, 0.7) 0%, rgba(11, 9, 18, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  z-index: 2;
+}
+
+.case-study-load-demo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: 1px solid #c4b5fd;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.case-study-load-demo-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.5);
+  background: linear-gradient(135deg, #9b6cf8, #8b5cf6);
+}
+
+.case-study-load-demo-btn:focus-visible {
+  box-shadow: 0 0 0 2px #00f0ff;
+}
+
+.case-study-demo-subtext {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.case-study-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  background: #0b0912;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-study-iframe-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: #181324;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: #c4b5fd;
+}
+
+.case-study-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #0b0912;
+}
+
+.case-study-demo-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 20px;
+  text-align: center;
+}
+
+.case-study-demo-fallback-img {
+  width: 100%;
+  max-width: 680px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* ─── Bottom Actions (Live & GitHub) ─── */
+.case-study-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+}
+
+.case-study-links-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.case-study-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: 1px solid #c4b5fd;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.case-study-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+}
+
+.case-study-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: #181324;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: #c4b5fd;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.case-study-btn-secondary:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(196, 181, 253, 0.35);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.case-study-btn-disabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+/* ─── Responsive Queries: Mobile Sheet ─── */
+@media (max-width: 900px) {
+  .case-study-blocks-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .case-study-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .case-study-panel {
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 24px 18px 120px 18px; /* padding-bottom 120px ensures fixed RESUME never covers */
+    gap: 24px;
+  }
+
+  .case-study-title {
+    font-size: 24px;
+  }
+
+  .case-study-summary {
+    font-size: 14px;
+  }
+
+  .case-study-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .case-study-links-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .case-study-btn-primary,
+  .case-study-btn-secondary,
+  .case-study-btn-disabled {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
+
+/* ─── Reduced Motion Support ─── */
+@media (prefers-reduced-motion: reduce) {
+  .case-study-panel,
+  .case-study-backdrop,
+  .case-study-block-card,
+  .case-study-chip,
+  .case-study-load-demo-btn {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}

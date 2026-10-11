@@ -57,6 +57,37 @@ Any usage, extraction, or redistribution of that avatar from my live website is 
 
 ---
 
+## ⚡ Proof of Work (Live Activity Maps)
+
+The portfolio includes a **Proof of Work** section featuring live maps for GitHub contributions and LeetCode problem-solving progress.
+
+### 🔑 Environment Variables
+
+To enable live fetching from GitHub GraphQL, create a `.env` file (see [`.env.example`](file:///.env.example)):
+
+```bash
+GITHUB_TOKEN=ghp_your_personal_access_token_here
+```
+
+- **Scope needed**: `read:user` only.
+- **Hosting configuration (Vercel)**:
+  - Add `GITHUB_TOKEN` to your Vercel Project Settings under **Environment Variables**.
+  - Serverless functions are located in `api/github.js` and `api/leetcode.js`.
+- **Offline / Local Fallback**:
+  - If `GITHUB_TOKEN` is missing or the upstream APIs are unreachable / rate-limited, the application gracefully renders cached data from [`data/activity-snapshot.json`](file:///data/activity-snapshot.json) with a "Showing last saved data" badge.
+
+### 💻 Local Development
+
+```bash
+# Standard Vite dev server (runs with activity snapshot fallback)
+npm run dev
+
+# Full local serverless testing with Vercel CLI
+npx vercel dev
+```
+
+---
+
 ## 📄 License
 
 This project is licensed under the Personal Portfolio License (PPL) v1.0.
